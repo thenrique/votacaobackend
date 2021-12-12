@@ -1,4 +1,4 @@
-package br.com.desafio.votacaobackend.dominio;
+package br.com.desafio.votacaobackend.dominio.validacoes;
 
 public class PautaJaExistente extends RuntimeException {
 

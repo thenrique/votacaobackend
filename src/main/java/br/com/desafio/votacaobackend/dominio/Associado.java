@@ -9,8 +9,7 @@ public class Associado {
 
 
     public Associado( String cpf) {
-
-        this.cpf = cpf;
+       this.cpf = cpf;
     }
 
 }

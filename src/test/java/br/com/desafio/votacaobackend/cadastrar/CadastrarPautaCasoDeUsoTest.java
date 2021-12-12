@@ -2,7 +2,7 @@ package br.com.desafio.votacaobackend.cadastrar;
 
 import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
 import br.com.desafio.votacaobackend.dominio.Pauta;
-import br.com.desafio.votacaobackend.dominio.PautaJaExistente;
+import br.com.desafio.votacaobackend.dominio.validacoes.PautaJaExistente;
 import br.com.desafio.votacaobackend.dominio.PautaRepositorio;
 import br.com.desafio.votacaobackend.infraestrutura.memoria.RepositoriodePautaMemoria;
 import org.junit.jupiter.api.Test;
@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CadastrarPautaCasoDeUsoTest {
 
     private PautaRepositorio pautaRepositorio = new RepositoriodePautaMemoria();
+
 
     @Test
     void deveCadastrarUmaPauta() {
