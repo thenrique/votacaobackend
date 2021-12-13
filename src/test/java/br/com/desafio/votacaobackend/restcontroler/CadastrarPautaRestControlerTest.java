@@ -1,6 +1,8 @@
 package br.com.desafio.votacaobackend.restcontroler;
 
 import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
+import br.com.desafio.votacaobackend.dominio.casosdeuso.CadastrarPauta;
+import br.com.desafio.votacaobackend.dominio.casosdeuso.impl.CadastrarPautaCasoDeUso;
 import br.com.desafio.votacaobackend.infraestrutura.memoria.RepositoriodePautaMemoria;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +12,8 @@ class CadastrarPautaRestControlerTest {
 
     @Test
     public void deveCadastrarUmaPauta(){
-        CadastrarPautaRestControler cadastrarPautaRestControler = new CadastrarPautaRestControler(new RepositoriodePautaMemoria());
+        CadastrarPauta cadastrarPauta = new CadastrarPautaCasoDeUso(new RepositoriodePautaMemoria());
+        CadastrarPautaRestControler cadastrarPautaRestControler = new CadastrarPautaRestControler(cadastrarPauta);
         PautaDto pautaDto = new PautaDto("123","Pauta Teste");
 
     }

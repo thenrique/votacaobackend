@@ -9,5 +9,7 @@ public interface PautaRepositorio {
 
     public Optional<Pauta> buscarPauta(String identificador);
 
-    void atualizaPauta(Pauta pauta);
+    void abrirSessao(Pauta pauta);
+
+    void votar(Votacao votacao);
 }

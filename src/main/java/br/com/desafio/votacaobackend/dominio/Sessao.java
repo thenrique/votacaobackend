@@ -1,26 +1,36 @@
 package br.com.desafio.votacaobackend.dominio;
 
+import lombok.Getter;
+
 import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalUnit;
 
 public class Sessao {
 
     private static final long DURACAO_PADRAO =1 ;
+    @Getter
     private LocalDateTime dataAbertura;
-
-    private Duration duracaoEmMinutos;
+    @Getter
+    private LocalDateTime dataEncerramento;
 
     public Sessao(Long duracao) {
         this.dataAbertura = LocalDateTime.now();
         if(duracao==null) {
             duracao=DURACAO_PADRAO;
         }
-        this.duracaoEmMinutos = Duration.ofMinutes(duracao);
+        this.dataEncerramento = dataAbertura.plusMinutes(duracao);
+    }
+
+    public Sessao(LocalDateTime aberturaSessao, LocalDateTime dataEncerramentoSessao) {
+        this.dataAbertura = aberturaSessao;
+        this.dataEncerramento = dataEncerramentoSessao;
     }
 
     public Duration getDuracaoSesao() {
-        return Duration.between(dataAbertura,  dataAbertura.plusMinutes(duracaoEmMinutos.toMinutes()));
+        return Duration.between(dataAbertura,  dataEncerramento);
+    }
+
+    public boolean isAberta() {
+        return LocalDateTime.now().isBefore(dataEncerramento);
     }
 }

@@ -1,7 +1,8 @@
-package br.com.desafio.votacaobackend.cadastrar;
+package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
 
 import br.com.desafio.votacaobackend.aplicacao.dto.SessaoDto;
 import br.com.desafio.votacaobackend.dominio.*;
+import br.com.desafio.votacaobackend.dominio.casosdeuso.AbrirSessaoVotacao;
 import br.com.desafio.votacaobackend.dominio.validacoes.ValidacaoPautaInexistente;
 import br.com.desafio.votacaobackend.dominio.validacoes.ValidacaoSessaoJaFoiAberta;
 import br.com.desafio.votacaobackend.dominio.validacoes.ValidacoesDePautas;
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class AbrirSessaoCasoDeUso {
+public class AbrirSessaoCasoDeUso implements AbrirSessaoVotacao {
 
     private final PautaRepositorio pautaRepositorio;
 
@@ -22,6 +23,7 @@ public class AbrirSessaoCasoDeUso {
         validacoes = Arrays.asList(new ValidacaoPautaInexistente(), new ValidacaoSessaoJaFoiAberta());
     }
 
+    @Override
     public void execute(SessaoDto sessaoDto){
         Optional<Pauta> pautaOptional = pautaRepositorio.buscarPauta(sessaoDto.getIdentificadorPauta());
         validacoes.forEach(validacoesDePautas -> validacoesDePautas.validar(pautaOptional));

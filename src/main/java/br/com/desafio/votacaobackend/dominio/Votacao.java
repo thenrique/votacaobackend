@@ -6,10 +6,21 @@ public class Votacao {
     private boolean voto;
     private Pauta pauta;
 
-    public Votacao(String cpfAssociado, boolean voto, String identificadorPauta) {
+    public Votacao(String cpfAssociado, boolean voto, Pauta pauta) {
         this.associado = new Associado(cpfAssociado);
         this.voto = voto;
-        this.pauta = new Pauta(identificadorPauta);
+        this.pauta = pauta;
     }
 
+    public Associado getAssociado() {
+        return associado;
+    }
+
+    public Pauta getPauta() {
+        return pauta;
+    }
+
+    public boolean isVoto() {
+        return voto;
+    }
 }

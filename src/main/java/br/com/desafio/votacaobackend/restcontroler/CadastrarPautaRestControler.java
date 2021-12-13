@@ -1,8 +1,7 @@
 package br.com.desafio.votacaobackend.restcontroler;
 
 import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
-import br.com.desafio.votacaobackend.cadastrar.CadastrarPautaCasoDeUso;
-import br.com.desafio.votacaobackend.dominio.PautaRepositorio;
+import br.com.desafio.votacaobackend.dominio.casosdeuso.CadastrarPauta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,22 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-@RequestMapping("/api/pauta/")
+@RequestMapping("/v1/api/pauta/")
 @RestController
 public class CadastrarPautaRestControler {
 
 
-    private final PautaRepositorio pautaRepositorio;
+    private final CadastrarPauta cadastrarPauta;
 
     @Autowired
-    public CadastrarPautaRestControler(PautaRepositorio pautaRepositorio) {
-        this.pautaRepositorio = pautaRepositorio;
+    public CadastrarPautaRestControler(CadastrarPauta cadastrarPauta) {
+        this.cadastrarPauta = cadastrarPauta;
     }
 
     @PostMapping
     public ResponseEntity cadastrarPauta(@RequestBody PautaDto pautaDto, UriComponentsBuilder uriComponentsBuilder){
-        CadastrarPautaCasoDeUso cadastrarPautaEvento = new CadastrarPautaCasoDeUso(pautaRepositorio);
-        cadastrarPautaEvento.execute(pautaDto);
+        cadastrarPauta.execute(pautaDto);
         return ResponseEntity.ok().build();
     }
 

@@ -1,13 +1,14 @@
-package br.com.desafio.votacaobackend.cadastrar;
+package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
 
 import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
 import br.com.desafio.votacaobackend.dominio.Pauta;
+import br.com.desafio.votacaobackend.dominio.casosdeuso.CadastrarPauta;
 import br.com.desafio.votacaobackend.dominio.validacoes.PautaJaExistente;
 import br.com.desafio.votacaobackend.dominio.PautaRepositorio;
 
 import java.util.Optional;
 
-public class CadastrarPautaCasoDeUso {
+public class CadastrarPautaCasoDeUso implements CadastrarPauta {
 
     private PautaRepositorio pautaRepositorio;
 
@@ -15,6 +16,7 @@ public class CadastrarPautaCasoDeUso {
         this.pautaRepositorio = pautaRepositorio;
     }
 
+    @Override
     public void execute(PautaDto pautaDto){
         Optional<Pauta> pautaJaCadastrada = pautaRepositorio.buscarPauta(pautaDto.getIdentificador());
         if(pautaJaCadastrada.isPresent()){
