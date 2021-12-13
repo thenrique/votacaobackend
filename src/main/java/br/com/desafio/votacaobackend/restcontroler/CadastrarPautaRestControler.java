@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RequestMapping("/v1/api/pauta/")
 @RestController
@@ -23,7 +22,7 @@ public class CadastrarPautaRestControler {
     }
 
     @PostMapping
-    public ResponseEntity cadastrarPauta(@RequestBody PautaDto pautaDto, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<PautaDto> cadastrarPauta(@RequestBody PautaDto pautaDto){
         cadastrarPauta.execute(pautaDto);
         return ResponseEntity.ok().build();
     }
