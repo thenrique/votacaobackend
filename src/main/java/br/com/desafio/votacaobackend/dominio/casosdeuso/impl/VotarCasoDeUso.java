@@ -1,9 +1,10 @@
 package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
 
-import br.com.desafio.votacaobackend.aplicacao.dto.VotoDto;
+
 import br.com.desafio.votacaobackend.dominio.Pauta;
 import br.com.desafio.votacaobackend.dominio.PautaRepositorio;
 import br.com.desafio.votacaobackend.dominio.casosdeuso.CadastrarVoto;
+import br.com.desafio.votacaobackend.dominio.casosdeuso.dto.VotoDto;
 import br.com.desafio.votacaobackend.dominio.validacoes.*;
 import br.com.desafio.votacaobackend.dominio.validacoes.votacao.ValidacaoAssociadoVotou;
 import br.com.desafio.votacaobackend.dominio.validacoes.votacao.ValidacaoSessaoAberta;
@@ -27,7 +28,8 @@ public class VotarCasoDeUso implements CadastrarVoto {
     }
 
     @Override
-    public void execute(VotoDto votoDto) throws RuntimeException {
+    public void execute(String identificadorPauta, String associado, boolean voto) throws RuntimeException {
+        VotoDto votoDto = new VotoDto(associado,voto, identificadorPauta);
         Pauta pauta = buscarPauta(votoDto);
         verificarSituacaoVoto(votoDto, pauta);
         pauta.votar(votoDto.isVoto(), votoDto.getIdentificadorAssociado(), pautaRepositorio);

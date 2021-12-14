@@ -21,7 +21,7 @@ public class CadastrarVotoRestControler {
 
     @PostMapping(value = "/cadastrar", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<VotoDto> cadastrarVoto(@RequestBody VotoDto votoDto){
-        cadastrarVoto.execute(votoDto);
+        cadastrarVoto.execute(votoDto.getIdentificadorPauta(),votoDto.getIdentificadorAssociado(), votoDto.isVoto());
         return ResponseEntity.ok().build();
     }
 

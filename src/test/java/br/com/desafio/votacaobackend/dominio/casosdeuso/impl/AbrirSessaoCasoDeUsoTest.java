@@ -22,7 +22,7 @@ class AbrirSessaoCasoDeUsoTest {
     @Test
      void deveAbrirUmaSessao() {
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria);
-        abrirSessao.execute(new SessaoDto("123", Long.valueOf(50)));
+        abrirSessao.execute("123", Long.valueOf(50));
 
         Pauta pauta = repositorioEmMemoria.buscarPauta("123").get();
 
@@ -35,7 +35,7 @@ class AbrirSessaoCasoDeUsoTest {
 
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria);
         try {
-            abrirSessao.execute(new SessaoDto("1234", Long.valueOf(50)));
+            abrirSessao.execute("1234", Long.valueOf(50));
         } catch (PautaDeIdentificadorInexistente e) {
             assertEquals( "Pauta inexistente com o identificador informado", e.getMessage());
 
@@ -49,8 +49,8 @@ class AbrirSessaoCasoDeUsoTest {
 
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria);
         try {
-            abrirSessao.execute(new SessaoDto("123", Long.valueOf(50)));
-            abrirSessao.execute(new SessaoDto("123", Long.valueOf(50)));
+            abrirSessao.execute("123", Long.valueOf(50));
+            abrirSessao.execute("123", Long.valueOf(50));
         } catch (SessaoJaFoiAberta e) {
             assertEquals("A sessao de pauta 123 já está aberta",e.getMessage());
 
@@ -63,7 +63,7 @@ class AbrirSessaoCasoDeUsoTest {
 
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria);
 
-        abrirSessao.execute(new SessaoDto("123",null));
+        abrirSessao.execute("123",null);
         Pauta pauta = repositorioEmMemoria.buscarPauta("123").get();
 
         assertEquals( true,pauta.getSessao() != null);
@@ -73,6 +73,6 @@ class AbrirSessaoCasoDeUsoTest {
     @BeforeEach
     void setUp() {
         CadastrarPautaCasoDeUso cadastrarPauta = new CadastrarPautaCasoDeUso(repositorioEmMemoria);
-        cadastrarPauta.execute(new PautaDto("123", "Teste Pauta"));
+        cadastrarPauta.execute("123", "Teste Pauta");
     }
 }

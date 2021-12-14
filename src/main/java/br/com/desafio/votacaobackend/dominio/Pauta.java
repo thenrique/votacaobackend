@@ -69,6 +69,6 @@ public class Pauta {
     }
 
     public boolean isAssociadoJaVotou(String identificadorAssociado) {
-        return votosDaPauta.parallelStream().anyMatch( votacao ->  votacao.getAssociado().getCpf().equalsIgnoreCase(identificadorAssociado));
+        return votosDaPauta.parallelStream().anyMatch( votacao ->  votacao.getAssociado().cpf().equalsIgnoreCase(identificadorAssociado));
     }
 }

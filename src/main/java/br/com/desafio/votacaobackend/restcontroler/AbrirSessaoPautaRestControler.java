@@ -23,7 +23,7 @@ public class AbrirSessaoPautaRestControler {
 
     @PostMapping(value = "abrirSessao", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SessaoDto> abrirSessao(@RequestBody SessaoDto sessaoDto){
-        abrirSessaoVotacao.execute(sessaoDto);
+        abrirSessaoVotacao.execute(sessaoDto.getIdentificadorPauta(),sessaoDto.getDuracao());
         return ResponseEntity.ok().build();
     }
 }

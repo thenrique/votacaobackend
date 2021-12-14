@@ -1,6 +1,6 @@
 package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
 
-import br.com.desafio.votacaobackend.aplicacao.dto.SessaoDto;
+
 import br.com.desafio.votacaobackend.dominio.*;
 import br.com.desafio.votacaobackend.dominio.casosdeuso.AbrirSessaoVotacao;
 import br.com.desafio.votacaobackend.dominio.validacoes.ValidacaoPautaInexistente;
@@ -26,11 +26,11 @@ public class AbrirSessaoCasoDeUso implements AbrirSessaoVotacao {
     }
 
     @Override
-    public void execute(SessaoDto sessaoDto){
-        Optional<Pauta> pautaOptional = pautaRepositorio.buscarPauta(sessaoDto.getIdentificadorPauta());
+    public void execute(String identificadorPauta, Long duracao){
+        Optional<Pauta> pautaOptional = pautaRepositorio.buscarPauta(identificadorPauta);
         validacoes.forEach(validacoesDePautas -> validacoesDePautas.validar(pautaOptional));
         Pauta pauta = pautaOptional.get();
-        pauta.abreSessao(sessaoDto.getDuracao(),pautaRepositorio);
+        pauta.abreSessao(duracao,pautaRepositorio);
 
     }
 }

@@ -1,8 +1,6 @@
 package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
 
-import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
-import br.com.desafio.votacaobackend.aplicacao.dto.SessaoDto;
-import br.com.desafio.votacaobackend.aplicacao.dto.VotoDto;
+
 import br.com.desafio.votacaobackend.dominio.Pauta;
 import br.com.desafio.votacaobackend.dominio.PautaRepositorio;
 import br.com.desafio.votacaobackend.dominio.casosdeuso.CadastrarVoto;
@@ -27,19 +25,18 @@ class VotarCasoDeUsoTest {
     void setUp() {
 
         CadastrarPautaCasoDeUso cadastrarPauta = new CadastrarPautaCasoDeUso(pautaRepositorio);
-        cadastrarPauta.execute(new PautaDto(identificadorPauta, "Teste Pauta"));
+        cadastrarPauta.execute(identificadorPauta, "Teste Pauta");
 
     }
 
     @Test
     void deveCadastrarVotoAssociado() {
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(pautaRepositorio);
-        abrirSessao.execute(new SessaoDto(identificadorPauta, Long.valueOf(50)));
+        abrirSessao.execute(identificadorPauta, Long.valueOf(50));
 
         CadastrarVoto cadastrarVoto = new VotarCasoDeUso(pautaRepositorio);
 
-        VotoDto votoDto = new VotoDto(cpfAssociado,true,identificadorPauta);
-        cadastrarVoto.execute(votoDto);
+        cadastrarVoto.execute(identificadorPauta,cpfAssociado,true);
 
         Optional<Pauta> pautaOptional = pautaRepositorio.buscarPauta(identificadorPauta);
         assertEquals(true, pautaOptional.get().isAssociadoJaVotou(cpfAssociado));
@@ -49,13 +46,11 @@ class VotarCasoDeUsoTest {
     @Test
     void naoDeveCadastrarVotoDuplicado() {
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(pautaRepositorio);
-        abrirSessao.execute(new SessaoDto(identificadorPauta, Long.valueOf(50)));
+        abrirSessao.execute(identificadorPauta, Long.valueOf(50));
         CadastrarVoto cadastrarVoto = new VotarCasoDeUso(pautaRepositorio);
-        VotoDto votoDto = new VotoDto(cpfAssociado,true,identificadorPauta);
-        VotoDto votoDto2 = new VotoDto(cpfAssociado,true,identificadorPauta);
-        cadastrarVoto.execute(votoDto);
+        cadastrarVoto.execute(identificadorPauta,cpfAssociado,true);
         try {
-            cadastrarVoto.execute(votoDto2);
+            cadastrarVoto.execute(identificadorPauta,cpfAssociado,true);
         }catch(AssociadoJaComputouVoto e){
             assertEquals(" O associado de identificador " + cpfAssociado + " já votou na pauta de número " + identificadorPauta, e.getMessage());
         }
@@ -65,15 +60,14 @@ class VotarCasoDeUsoTest {
     @Test
     void naoDeveVotarComSessaoNaoAberta() {
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(pautaRepositorio);
-        abrirSessao.execute(new SessaoDto(identificadorPauta, Long.valueOf(-1)));
+        abrirSessao.execute(identificadorPauta, Long.valueOf(-1));
 
         CadastrarVoto cadastrarVoto = new VotarCasoDeUso(pautaRepositorio);
-        VotoDto votoDto = new VotoDto(cpfAssociado,true,identificadorPauta);
         Optional<Pauta> pautaOptional = pautaRepositorio.buscarPauta(identificadorPauta);
         SessaoNaoEstaAberta expected = new SessaoNaoEstaAberta(pautaOptional.get());
         boolean erro=false;
         try {
-            cadastrarVoto.execute(votoDto);
+            cadastrarVoto.execute(identificadorPauta,cpfAssociado,true);
         }catch(SessaoNaoEstaAberta e){
             erro = true;
         }

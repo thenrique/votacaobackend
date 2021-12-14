@@ -20,7 +20,7 @@ class CadastrarPautaCasoDeUsoTest {
     @Test
     void deveCadastrarUmaPauta() {
         CadastrarPautaCasoDeUso cadastrarPauta = new CadastrarPautaCasoDeUso(pautaRepositorio);
-        cadastrarPauta.execute(new PautaDto("123", "Teste Pauta"));
+        cadastrarPauta.execute("123", "Teste Pauta");
         Optional<Pauta> pauta = pautaRepositorio.buscarPauta("123");
         assertEquals( "123",pauta.get().getIdentificador() );
     }
@@ -28,10 +28,10 @@ class CadastrarPautaCasoDeUsoTest {
     @Test
     void NaoDeveCadastrarAMesmaPautaDuasVezes() {
         CadastrarPautaCasoDeUso cadastrarPauta = new CadastrarPautaCasoDeUso(pautaRepositorio);
-        cadastrarPauta.execute(new PautaDto("123", "Teste Pauta"));
+        cadastrarPauta.execute("123", "Teste Pauta");
 
         try {
-            cadastrarPauta.execute(new PautaDto("123", "Teste Pauta"));
+            cadastrarPauta.execute("123", "Teste Pauta");
         }catch(PautaJaExistente e){
             assertEquals("Pauta já existente com o identificador informado: 123",e.getMessage());
         }
