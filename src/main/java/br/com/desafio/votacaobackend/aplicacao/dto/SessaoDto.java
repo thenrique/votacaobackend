@@ -1,5 +1,8 @@
 package br.com.desafio.votacaobackend.aplicacao.dto;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class SessaoDto {
 
     private String identificadorPauta;

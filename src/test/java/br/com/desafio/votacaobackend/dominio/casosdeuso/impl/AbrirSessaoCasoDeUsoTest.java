@@ -1,4 +1,4 @@
-package br.com.desafio.votacaobackend.cadastrar;
+package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
 
 import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
 import br.com.desafio.votacaobackend.aplicacao.dto.SessaoDto;
@@ -20,31 +20,31 @@ class AbrirSessaoCasoDeUsoTest {
 
 
     @Test
-    public void deveAbrirUmaSessao() {
+     void deveAbrirUmaSessao() {
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria);
         abrirSessao.execute(new SessaoDto("123", Long.valueOf(50)));
 
         Pauta pauta = repositorioEmMemoria.buscarPauta("123").get();
 
-        assertEquals(pauta.getSessao() != null, true);
-        assertEquals(pauta.getSessao().getDuracaoSesao().toMinutes(), 50);
+        assertEquals(true,pauta.getSessao() != null);
+        assertEquals(50,pauta.getSessao().getDuracaoSesao().toMinutes());
     }
 
     @Test
-    public void naoDeveAbrirSessaoPautaInexistente() {
+     void naoDeveAbrirSessaoPautaInexistente() {
 
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria);
         try {
             abrirSessao.execute(new SessaoDto("1234", Long.valueOf(50)));
         } catch (PautaDeIdentificadorInexistente e) {
-            assertEquals(e.getMessage(), "Pauta inexistente com o identificador informado");
+            assertEquals( "Pauta inexistente com o identificador informado", e.getMessage());
 
         }
 
     }
 
     @Test
-    public void naoDeveAbrirSessaoPautaSessaoJaAberta() {
+     void naoDeveAbrirSessaoPautaSessaoJaAberta() {
 
 
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria);
@@ -52,13 +52,13 @@ class AbrirSessaoCasoDeUsoTest {
             abrirSessao.execute(new SessaoDto("123", Long.valueOf(50)));
             abrirSessao.execute(new SessaoDto("123", Long.valueOf(50)));
         } catch (SessaoJaFoiAberta e) {
-            assertEquals(e.getMessage(), "A sessao de pauta 123 já está aberta");
+            assertEquals("A sessao de pauta 123 já está aberta",e.getMessage());
 
         }
     }
 
     @Test
-    public void deveAbrirSessaoComDuracaoPadrao() {
+     void deveAbrirSessaoComDuracaoPadrao() {
 
 
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria);
@@ -66,8 +66,8 @@ class AbrirSessaoCasoDeUsoTest {
         abrirSessao.execute(new SessaoDto("123",null));
         Pauta pauta = repositorioEmMemoria.buscarPauta("123").get();
 
-        assertEquals(pauta.getSessao() != null, true);
-        assertEquals(pauta.getSessao().getDuracaoSesao().toMinutes(), 1);
+        assertEquals( true,pauta.getSessao() != null);
+        assertEquals( 1,pauta.getSessao().getDuracaoSesao().toMinutes());
     }
 
     @BeforeEach

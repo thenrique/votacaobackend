@@ -67,4 +67,8 @@ public class Pauta {
         Pauta pauta = (Pauta) o;
         return Objects.equals(identificador, pauta.identificador) && Objects.equals(nome, pauta.nome) && Objects.equals(sessao, pauta.sessao) && Objects.equals(votosDaPauta, pauta.votosDaPauta);
     }
+
+    public boolean isAssociadoJaVotou(String identificadorAssociado) {
+        return votosDaPauta.parallelStream().anyMatch( votacao ->  votacao.getAssociado().getCpf().equalsIgnoreCase(identificadorAssociado));
+    }
 }

@@ -6,11 +6,13 @@ import br.com.desafio.votacaobackend.dominio.casosdeuso.AbrirSessaoVotacao;
 import br.com.desafio.votacaobackend.dominio.validacoes.ValidacaoPautaInexistente;
 import br.com.desafio.votacaobackend.dominio.validacoes.ValidacaoSessaoJaFoiAberta;
 import br.com.desafio.votacaobackend.dominio.validacoes.ValidacoesDePautas;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class AbrirSessaoCasoDeUso implements AbrirSessaoVotacao {
 
     private final PautaRepositorio pautaRepositorio;

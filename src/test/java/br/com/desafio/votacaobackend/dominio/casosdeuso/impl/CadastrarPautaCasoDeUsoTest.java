@@ -1,4 +1,4 @@
-package br.com.desafio.votacaobackend.cadastrar;
+package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
 
 import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
 import br.com.desafio.votacaobackend.dominio.Pauta;
@@ -22,7 +22,7 @@ class CadastrarPautaCasoDeUsoTest {
         CadastrarPautaCasoDeUso cadastrarPauta = new CadastrarPautaCasoDeUso(pautaRepositorio);
         cadastrarPauta.execute(new PautaDto("123", "Teste Pauta"));
         Optional<Pauta> pauta = pautaRepositorio.buscarPauta("123");
-        assertEquals(pauta.get().getIdentificador(), "123" );
+        assertEquals( "123",pauta.get().getIdentificador() );
     }
 
     @Test
@@ -33,7 +33,7 @@ class CadastrarPautaCasoDeUsoTest {
         try {
             cadastrarPauta.execute(new PautaDto("123", "Teste Pauta"));
         }catch(PautaJaExistente e){
-            assertEquals(e.getMessage(),"Pauta já existente com o identificador informado: 123");
+            assertEquals("Pauta já existente com o identificador informado: 123",e.getMessage());
         }
 
 
