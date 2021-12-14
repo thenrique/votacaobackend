@@ -5,9 +5,10 @@ import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ExibirResultadoVot
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacao;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacaoRepositorio;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.validacao.ResultadoVotacaoNaoContabilizado;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
+@Component
 public class ExibirResultadoVotacaoCasodeUso implements ExibirResultadoVotacao {
 
     private ResultadoVotacaoRepositorio resultadoVotacaoRepositorio;

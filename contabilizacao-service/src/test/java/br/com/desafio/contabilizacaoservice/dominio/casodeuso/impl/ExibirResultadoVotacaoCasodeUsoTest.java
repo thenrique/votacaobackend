@@ -23,8 +23,8 @@ class ExibirResultadoVotacaoCasodeUsoTest {
         ExibirResultadoVotacao exibirResultadoVotacao = new ExibirResultadoVotacaoCasodeUso(resultadoVotacaoRepositorio);
         ResultadoVotacaoDto resultado = exibirResultadoVotacao.executar(identificadorPauta);
 
-        assertEquals(3,resultado.getVotosSim().totalVoto());
-        assertEquals(4,resultado.getVotosNao().totalVoto());
+        assertEquals(3,resultado.getVotosSim());
+        assertEquals(4,resultado.getVotosNao());
         assertEquals(7,resultado.getTotalVotos());
 
     }

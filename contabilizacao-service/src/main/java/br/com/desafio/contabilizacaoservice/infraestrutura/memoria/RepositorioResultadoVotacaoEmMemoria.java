@@ -3,10 +3,12 @@ package br.com.desafio.contabilizacaoservice.infraestrutura.memoria;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacao;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacaoRepositorio;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.Voto;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class RepositorioResultadoVotacaoEmMemoria implements ResultadoVotacaoRepositorio {
 
     private List<Voto> votos = Arrays.asList(
