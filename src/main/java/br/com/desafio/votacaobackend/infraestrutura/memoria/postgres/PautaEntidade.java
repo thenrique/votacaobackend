@@ -3,31 +3,17 @@ package br.com.desafio.votacaobackend.infraestrutura.memoria.postgres;
 import br.com.desafio.votacaobackend.dominio.Pauta;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-import static javax.persistence.GenerationType.SEQUENCE;
+public class PautaEntidade implements Serializable {
 
-@Data
-public class PautaEntidade {
+      private Long id;
 
-    @Id
-    @GeneratedValue(strategy = SEQUENCE, generator = "seqGen")
-    @SequenceGenerator(name = "seqGen", sequenceName = "seq", initialValue = 1)
-    private Long id;
-
-    @Column
-    private String identificador;
-    @Column
+     private String identificador;
     private String nome;
-    @Column
     private LocalDateTime aberturaSessao;
-    @Column
     private LocalDateTime dataEncerramentoSessao;
 
 

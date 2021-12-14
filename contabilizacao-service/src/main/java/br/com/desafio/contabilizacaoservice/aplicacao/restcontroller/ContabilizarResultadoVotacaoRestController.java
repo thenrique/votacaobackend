@@ -1,8 +1,9 @@
-package br.com.desafio.votacaobackend.restcontroler;
+package br.com.desafio.contabilizacaoservice.aplicacao.restcontroller;
 
-import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
-import br.com.desafio.votacaobackend.aplicacao.dto.ResultadoVotacaoDto;
-import br.com.desafio.votacaobackend.dominio.casosdeuso.ContabilizarResultadoVotacao;
+
+import br.com.desafio.contabilizacaoservice.aplicacao.dto.PautaDto;
+import br.com.desafio.contabilizacaoservice.aplicacao.dto.ResultadoVotacaoDto;
+import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ContabilizarResultadoVotacao;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("v1/api/resultado")
+@RequestMapping("v1/api/contabilizarvotos")
 @RestController
 public class ContabilizarResultadoVotacaoRestController {
 
@@ -20,8 +21,8 @@ public class ContabilizarResultadoVotacaoRestController {
         this.contabilizarResultadoVotacao = contabilizarResultadoVotacao;
     }
 
-    @GetMapping(value = "/resultado/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResultadoVotacaoDto> apresentarResultado(@RequestBody PautaDto pautaDto){
+    @GetMapping( consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResultadoVotacaoDto> gerar(@RequestBody PautaDto pautaDto){
         contabilizarResultadoVotacao.execute(pautaDto.getIdentificador());
         return ResponseEntity.ok().build();
     }
