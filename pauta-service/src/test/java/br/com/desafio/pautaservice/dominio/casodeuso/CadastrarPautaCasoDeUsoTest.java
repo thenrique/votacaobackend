@@ -1,16 +1,15 @@
-package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
+package br.com.desafio.pautaservice.dominio.casodeuso;
 
-import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
-import br.com.desafio.votacaobackend.dominio.Pauta;
-import br.com.desafio.votacaobackend.dominio.casosdeuso.impl.CadastrarPautaCasoDeUso;
-import br.com.desafio.votacaobackend.dominio.validacoes.PautaJaExistente;
-import br.com.desafio.votacaobackend.dominio.PautaRepositorio;
-import br.com.desafio.votacaobackend.infraestrutura.memoria.RepositoriodePautaMemoria;
+import br.com.desafio.pautaservice.dominio.casosdeuso.Pauta;
+import br.com.desafio.pautaservice.dominio.casosdeuso.PautaRepositorio;
+import br.com.desafio.pautaservice.dominio.casosdeuso.impl.CadastrarPautaCasoDeUso;
+import br.com.desafio.pautaservice.dominio.casosdeuso.validacoes.PautaJaExistente;
+import br.com.desafio.pautaservice.infraestrutura.memoria.RepositoriodePautaMemoria;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class CadastrarPautaCasoDeUsoTest {
 
@@ -22,7 +21,7 @@ class CadastrarPautaCasoDeUsoTest {
         CadastrarPautaCasoDeUso cadastrarPauta = new CadastrarPautaCasoDeUso(pautaRepositorio);
         cadastrarPauta.execute("123", "Teste Pauta");
         Optional<Pauta> pauta = pautaRepositorio.buscarPauta("123");
-        assertEquals( "123",pauta.get().getIdentificador() );
+        Assertions.assertEquals( "123",pauta.get().getIdentificador() );
     }
 
     @Test
@@ -33,7 +32,7 @@ class CadastrarPautaCasoDeUsoTest {
         try {
             cadastrarPauta.execute("123", "Teste Pauta");
         }catch(PautaJaExistente e){
-            assertEquals("Pauta já existente com o identificador informado: 123",e.getMessage());
+            Assertions.assertEquals("Pauta já existente com o identificador informado: 123",e.getMessage());
         }
 
 

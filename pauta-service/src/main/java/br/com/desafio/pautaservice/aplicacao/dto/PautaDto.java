@@ -1,4 +1,4 @@
-package br.com.desafio.votacaobackend.aplicacao.dto;
+package br.com.desafio.pautaservice.aplicacao.dto;
 
 
 import lombok.Getter;

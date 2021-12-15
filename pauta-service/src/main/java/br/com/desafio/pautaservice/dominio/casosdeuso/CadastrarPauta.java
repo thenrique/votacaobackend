@@ -1,4 +1,4 @@
-package br.com.desafio.votacaobackend.dominio.casosdeuso;
+package br.com.desafio.pautaservice.dominio.casosdeuso;
 
 
 

@@ -1,11 +1,15 @@
-package br.com.desafio.votacaobackend.restcontroler;
+package br.com.desafio.pautaservice.aplicacao.restcontroler;
 
-import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
-import br.com.desafio.votacaobackend.dominio.casosdeuso.CadastrarPauta;
+import br.com.desafio.pautaservice.aplicacao.dto.PautaDto;
+import br.com.desafio.pautaservice.dominio.casosdeuso.CadastrarPauta;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("v1/api/pauta")
 @RestController

@@ -1,11 +1,7 @@
 package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
 
-import br.com.desafio.votacaobackend.aplicacao.dto.PautaDto;
-import br.com.desafio.votacaobackend.aplicacao.dto.SessaoDto;
 import br.com.desafio.votacaobackend.dominio.Pauta;
 import br.com.desafio.votacaobackend.dominio.PautaRepositorio;
-import br.com.desafio.votacaobackend.dominio.casosdeuso.impl.AbrirSessaoCasoDeUso;
-import br.com.desafio.votacaobackend.dominio.casosdeuso.impl.CadastrarPautaCasoDeUso;
 import br.com.desafio.votacaobackend.dominio.validacoes.PautaDeIdentificadorInexistente;
 import br.com.desafio.votacaobackend.dominio.validacoes.SessaoJaFoiAberta;
 import br.com.desafio.votacaobackend.infraestrutura.memoria.RepositoriodePautaMemoria;
@@ -72,7 +68,7 @@ class AbrirSessaoCasoDeUsoTest {
 
     @BeforeEach
     void setUp() {
-        CadastrarPautaCasoDeUso cadastrarPauta = new CadastrarPautaCasoDeUso(repositorioEmMemoria);
-        cadastrarPauta.execute("123", "Teste Pauta");
+        repositorioEmMemoria.cadastrarPauta(new Pauta("123"));
+
     }
 }

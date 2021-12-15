@@ -24,8 +24,7 @@ class VotarCasoDeUsoTest {
     @BeforeEach
     void setUp() {
 
-        CadastrarPautaCasoDeUso cadastrarPauta = new CadastrarPautaCasoDeUso(pautaRepositorio);
-        cadastrarPauta.execute(identificadorPauta, "Teste Pauta");
+        pautaRepositorio.cadastrarPauta(new Pauta(identificadorPauta));
 
     }
 

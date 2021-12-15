@@ -1,12 +1,14 @@
-package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
+package br.com.desafio.pautaservice.dominio.casosdeuso.impl;
 
-import br.com.desafio.votacaobackend.dominio.Pauta;
-import br.com.desafio.votacaobackend.dominio.casosdeuso.CadastrarPauta;
-import br.com.desafio.votacaobackend.dominio.validacoes.PautaJaExistente;
-import br.com.desafio.votacaobackend.dominio.PautaRepositorio;
+import br.com.desafio.pautaservice.dominio.casosdeuso.CadastrarPauta;
+import br.com.desafio.pautaservice.dominio.casosdeuso.Pauta;
+import br.com.desafio.pautaservice.dominio.casosdeuso.PautaRepositorio;
+
+import br.com.desafio.pautaservice.dominio.casosdeuso.validacoes.PautaJaExistente;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+
 
 @Component
 public class CadastrarPautaCasoDeUso implements CadastrarPauta {

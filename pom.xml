@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
 	<modules>
 		<module>contabilizacao-service</module>
+		<module>pauta-service</module>
 	</modules>
 
 	<parent>
