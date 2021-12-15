@@ -1,4 +1,4 @@
-package br.com.desafio.votacaobackend.dominio;
+package br.com.desafio.abrirsessaoservice.dominio;
 
 
 import java.util.Optional;
@@ -9,5 +9,4 @@ public interface PautaRepositorio {
 
     void abrirSessao(Pauta pauta);
 
-    void votar(Votacao votacao);
 }

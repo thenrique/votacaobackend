@@ -21,17 +21,9 @@ class VotarCasoDeUsoTest {
     private String cpfAssociado="95346141065";
 
 
-    @BeforeEach
-    void setUp() {
-
-        pautaRepositorio.cadastrarPauta(new Pauta(identificadorPauta));
-
-    }
-
     @Test
     void deveCadastrarVotoAssociado() {
-        AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(pautaRepositorio);
-        abrirSessao.execute(identificadorPauta, Long.valueOf(50));
+
 
         CadastrarVoto cadastrarVoto = new VotarCasoDeUso(pautaRepositorio);
 
@@ -44,9 +36,7 @@ class VotarCasoDeUsoTest {
 
     @Test
     void naoDeveCadastrarVotoDuplicado() {
-        AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(pautaRepositorio);
-        abrirSessao.execute(identificadorPauta, Long.valueOf(50));
-        CadastrarVoto cadastrarVoto = new VotarCasoDeUso(pautaRepositorio);
+          CadastrarVoto cadastrarVoto = new VotarCasoDeUso(pautaRepositorio);
         cadastrarVoto.execute(identificadorPauta,cpfAssociado,true);
         try {
             cadastrarVoto.execute(identificadorPauta,cpfAssociado,true);
@@ -58,15 +48,13 @@ class VotarCasoDeUsoTest {
 
     @Test
     void naoDeveVotarComSessaoNaoAberta() {
-        AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(pautaRepositorio);
-        abrirSessao.execute(identificadorPauta, Long.valueOf(-1));
 
         CadastrarVoto cadastrarVoto = new VotarCasoDeUso(pautaRepositorio);
-        Optional<Pauta> pautaOptional = pautaRepositorio.buscarPauta(identificadorPauta);
-        SessaoNaoEstaAberta expected = new SessaoNaoEstaAberta(pautaOptional.get());
+        Optional<Pauta> pautaOptional = pautaRepositorio.buscarPauta("123456");
+        SessaoNaoEstaAberta expected = new SessaoNaoEstaAberta();
         boolean erro=false;
         try {
-            cadastrarVoto.execute(identificadorPauta,cpfAssociado,true);
+            cadastrarVoto.execute("123456",cpfAssociado,true);
         }catch(SessaoNaoEstaAberta e){
             erro = true;
         }

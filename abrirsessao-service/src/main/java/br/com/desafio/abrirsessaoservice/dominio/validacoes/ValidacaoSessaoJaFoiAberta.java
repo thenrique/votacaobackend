@@ -1,10 +1,11 @@
-package br.com.desafio.votacaobackend.dominio.validacoes;
+package br.com.desafio.abrirsessaoservice.dominio.validacoes;
 
-import br.com.desafio.votacaobackend.dominio.Pauta;
+
+import br.com.desafio.abrirsessaoservice.dominio.Pauta;
 
 import java.util.Optional;
 
-public class ValidacaoSessaoJaFoiAberta implements ValidacoesDePautas{
+public class ValidacaoSessaoJaFoiAberta implements ValidacoesDePautas {
 
 
 

@@ -1,6 +1,7 @@
-package br.com.desafio.votacaobackend.dominio.validacoes;
+package br.com.desafio.abrirsessaoservice.dominio.validacoes;
 
-import br.com.desafio.votacaobackend.dominio.Pauta;
+
+import br.com.desafio.abrirsessaoservice.dominio.Pauta;
 
 public class SessaoJaFoiAberta extends RuntimeException {
 

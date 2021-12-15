@@ -12,11 +12,6 @@ public class RepositorioDePautasPostgres implements PautaRepositorio {
 
 
     @Override
-    public void cadastrarPauta(Pauta pauta) {
-        PautaEntidade pautaEntidade = new PautaEntidade(pauta);
-    }
-
-    @Override
     public Optional<Pauta> buscarPauta(String identificador) {
        /* Optional<PautaEntidade> optionalPautaEntidade = jpaRepository.findAll().stream().filter(pautaEntidade -> pautaEntidade.getIdentificador().equalsIgnoreCase(identificador)).findFirst();
         PautaEntidade pautaEntidade = optionalPautaEntidade.get();

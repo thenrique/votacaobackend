@@ -1,14 +1,14 @@
-package br.com.desafio.votacaobackend.dominio.casosdeuso.impl;
+package br.com.desafio.abrirsessaoservice.impl;
 
-import br.com.desafio.votacaobackend.dominio.Pauta;
-import br.com.desafio.votacaobackend.dominio.PautaRepositorio;
-import br.com.desafio.votacaobackend.dominio.validacoes.PautaDeIdentificadorInexistente;
-import br.com.desafio.votacaobackend.dominio.validacoes.SessaoJaFoiAberta;
-import br.com.desafio.votacaobackend.infraestrutura.memoria.RepositoriodePautaMemoria;
-import org.junit.jupiter.api.BeforeEach;
+import br.com.desafio.abrirsessaoservice.dominio.Pauta;
+import br.com.desafio.abrirsessaoservice.dominio.PautaRepositorio;
+import br.com.desafio.abrirsessaoservice.dominio.casodeuso.impl.AbrirSessaoCasoDeUso;
+import br.com.desafio.abrirsessaoservice.dominio.validacoes.PautaDeIdentificadorInexistente;
+import br.com.desafio.abrirsessaoservice.dominio.validacoes.SessaoJaFoiAberta;
+import br.com.desafio.abrirsessaoservice.infraestrutura.memoria.RepositoriodePautaMemoria;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AbrirSessaoCasoDeUsoTest {
 
@@ -66,9 +66,5 @@ class AbrirSessaoCasoDeUsoTest {
         assertEquals( 1,pauta.getSessao().getDuracaoSesao().toMinutes());
     }
 
-    @BeforeEach
-    void setUp() {
-        repositorioEmMemoria.cadastrarPauta(new Pauta("123"));
 
-    }
 }

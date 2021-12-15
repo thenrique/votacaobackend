@@ -11,7 +11,7 @@ public class ValidacaoSessaoAberta implements ValidacoesDePautas {
     public void validar(Optional<Pauta> optionalPauta) {
         Pauta pauta = optionalPauta.get();
         if(!pauta.isSessaoAberta()){
-            throw new SessaoNaoEstaAberta(pauta);
+            throw new SessaoNaoEstaAberta();
         }
     }
 }

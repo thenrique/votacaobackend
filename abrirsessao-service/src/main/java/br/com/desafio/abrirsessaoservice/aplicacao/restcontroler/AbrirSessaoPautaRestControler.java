@@ -1,7 +1,7 @@
-package br.com.desafio.votacaobackend.restcontroler;
+package br.com.desafio.abrirsessaoservice.aplicacao.restcontroler;
 
+import br.com.desafio.abrirsessaoservice.dominio.casodeuso.AbrirSessaoVotacao;
 import br.com.desafio.votacaobackend.aplicacao.dto.SessaoDto;
-import br.com.desafio.votacaobackend.dominio.casosdeuso.AbrirSessaoVotacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

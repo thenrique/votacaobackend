@@ -14,9 +14,12 @@ public class RepositoriodePautaMemoria implements PautaRepositorio {
 
     private Set<Pauta> pautas = new HashSet<>();
 
-    @Override
-    public void cadastrarPauta(Pauta pauta) {
+    public RepositoriodePautaMemoria() {
+        Pauta pauta = new Pauta("1234");
+        pauta.abreSessao(Long.valueOf(50),this);
         pautas.add(pauta);
+        Pauta pauta2 = new Pauta("123456");
+        pautas.add(pauta2);
     }
 
     @Override
