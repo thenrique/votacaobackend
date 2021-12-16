@@ -13,8 +13,12 @@ public class Sessao {
     @Getter
     private LocalDateTime dataEncerramento;
 
-    public Sessao(Long duracao) {
+    @Getter
+    private String identificadorPauta;
+
+    public Sessao(Long duracao, String identificadorPauta) {
         this.dataAbertura = LocalDateTime.now();
+        this.identificadorPauta = identificadorPauta;
         if(duracao==null) {
             duracao=DURACAO_PADRAO;
         }
@@ -32,5 +36,9 @@ public class Sessao {
 
     public boolean isAberta() {
         return LocalDateTime.now().isBefore(dataEncerramento);
+    }
+
+    public void abrir(SessaoRepositorio sessaoRepositorio) {
+        sessaoRepositorio.abrirSessao(this);
     }
 }

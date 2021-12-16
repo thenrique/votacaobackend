@@ -1,18 +1,16 @@
 package br.com.desafio.abrirsessaoservice.dominio.validacoes;
 
 
-import br.com.desafio.abrirsessaoservice.dominio.Pauta;
+import br.com.desafio.abrirsessaoservice.dominio.Sessao;
 
-import java.util.Optional;
-
-public class ValidacaoSessaoJaFoiAberta implements ValidacoesDePautas {
+public class ValidacaoSessaoJaFoiAberta implements ValidacoesDeSessao {
 
 
 
     @Override
-    public void validar(Optional<Pauta> optionalPauta) {
-        if(optionalPauta.get().getSessao()!=null){
-            throw new SessaoJaFoiAberta(optionalPauta.get());
+    public void validar(Sessao sessao) {
+        if(sessao!=null){
+            throw new SessaoJaFoiAberta(sessao.getIdentificadorPauta());
         }
     }
 }

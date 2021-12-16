@@ -1,11 +1,15 @@
 package br.com.desafio.abrirsessaoservice.dominio.casodeuso.impl;
 
 
-import br.com.desafio.abrirsessaoservice.dominio.Pauta;
-import br.com.desafio.abrirsessaoservice.dominio.PautaRepositorio;
+import br.com.desafio.abrirsessaoservice.dominio.PautaService;
+import br.com.desafio.abrirsessaoservice.dominio.Sessao;
+import br.com.desafio.abrirsessaoservice.dominio.SessaoRepositorio;
 import br.com.desafio.abrirsessaoservice.dominio.casodeuso.AbrirSessaoVotacao;
 
 
+import br.com.desafio.abrirsessaoservice.dominio.dto.PautaDto;
+import br.com.desafio.abrirsessaoservice.dominio.validacoes.PautaDeIdentificadorInexistente;
+import br.com.desafio.abrirsessaoservice.dominio.validacoes.SessaoJaFoiAberta;
 import org.springframework.stereotype.Component;
 
 
@@ -14,24 +18,33 @@ import java.util.Optional;
 @Component
 public class AbrirSessaoCasoDeUso implements AbrirSessaoVotacao {
 
-    private final PautaRepositorio pautaRepositorio;
+    private final SessaoRepositorio sessaoRepositorio;
+    private final PautaService pautaService;
 
 
-
-    public AbrirSessaoCasoDeUso(PautaRepositorio pautaRepositorio) {
-        this.pautaRepositorio = pautaRepositorio;
+    public AbrirSessaoCasoDeUso(SessaoRepositorio sessaoRepositorio, PautaService pautaService) {
+        this.sessaoRepositorio = sessaoRepositorio;
+        this.pautaService = pautaService;
 
     }
 
+    //TODO:REFACTORING
     @Override
     public void execute(String identificadorPauta, Long duracao){
-        Optional<Pauta> pautaOptional = pautaRepositorio.buscarPauta(identificadorPauta);
-        if(pautaOptional.isPresent()){
-            pautaOptional.get().getValidacoes().forEach(validacoesDePautas -> validacoesDePautas.validar(pautaOptional));
-            Pauta pauta = pautaOptional.get();
-            pauta.abreSessao(duracao,pautaRepositorio);
-        }
+        PautaDto pauta = pautaService.buscarPauta(identificadorPauta);
+        if(pauta!=null){
+            Sessao sessao = new Sessao(duracao,identificadorPauta);
+            Optional<Sessao> sessaoOp = sessaoRepositorio.buscarSessaoPauta(identificadorPauta);
+            if(sessaoOp.isPresent()){
+                if(sessaoOp.get().isAberta()){
+                    throw  new SessaoJaFoiAberta(identificadorPauta);
+                }else{
+                    sessao.abrir(sessaoRepositorio);
+                }
+            }else{
+                throw new PautaDeIdentificadorInexistente();
+            }
 
-
+       }
     }
 }
