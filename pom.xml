@@ -7,7 +7,8 @@
 		<module>contabilizacao-service</module>
 		<module>pauta-service</module>
 		<module>abrirsessao-service</module>
-	</modules>
+        <module>votacao-service</module>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
