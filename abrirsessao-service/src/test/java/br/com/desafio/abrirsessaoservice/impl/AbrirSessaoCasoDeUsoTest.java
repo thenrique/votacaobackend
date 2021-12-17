@@ -7,7 +7,6 @@ import br.com.desafio.abrirsessaoservice.dominio.casodeuso.impl.AbrirSessaoCasoD
 import br.com.desafio.abrirsessaoservice.dominio.dto.PautaDto;
 import br.com.desafio.abrirsessaoservice.dominio.validacoes.PautaDeIdentificadorInexistente;
 import br.com.desafio.abrirsessaoservice.dominio.validacoes.SessaoJaFoiAberta;
-import br.com.desafio.abrirsessaoservice.infraestrutura.adapter.rpc.PautaServiceEndpoint;
 import br.com.desafio.abrirsessaoservice.infraestrutura.memoria.RepositoriodeSessaoMemoria;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -23,11 +22,11 @@ class AbrirSessaoCasoDeUsoTest {
 
     @Test
      void deveAbrirUmaSessao() {
-        PautaDto pauta = new PautaDto("123");
+        PautaDto pauta = new PautaDto("1236");
 
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria,pautaService);
         Mockito.when(pautaService.buscarPauta("123")).thenReturn(pauta);
-        abrirSessao.execute("123", Long.valueOf(50));
+        abrirSessao.execute("1236", Long.valueOf(50));
 
         Sessao sessao = repositorioEmMemoria.buscarSessaoPauta("123").get();
 

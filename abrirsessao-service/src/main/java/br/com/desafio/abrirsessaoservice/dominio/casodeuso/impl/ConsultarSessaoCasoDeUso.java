@@ -3,9 +3,11 @@ package br.com.desafio.abrirsessaoservice.dominio.casodeuso.impl;
 import br.com.desafio.abrirsessaoservice.dominio.Sessao;
 import br.com.desafio.abrirsessaoservice.dominio.SessaoRepositorio;
 import br.com.desafio.abrirsessaoservice.dominio.casodeuso.ConsultarSessaoVotacao;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class ConsultarSessaoCasoDeUso implements ConsultarSessaoVotacao {
 
     private SessaoRepositorio sessaoRepositorio;
