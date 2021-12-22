@@ -1,9 +1,6 @@
 package br.com.desafio.votacaoservice.dominio.casosdeuso.impl;
 
-import br.com.desafio.votacaoservice.dominio.ConsultarSessaoPautas;
-import br.com.desafio.votacaoservice.dominio.ValidacaoCpf;
-import br.com.desafio.votacaoservice.dominio.Votacao;
-import br.com.desafio.votacaoservice.dominio.VotacaoRepositorio;
+import br.com.desafio.votacaoservice.dominio.*;
 import br.com.desafio.votacaoservice.dominio.casosdeuso.CadastrarVoto;
 import br.com.desafio.votacaoservice.dominio.dto.PautaSessaoDto;
 import br.com.desafio.votacaoservice.dominio.validacao.AssociadoJaComputouVoto;
@@ -24,13 +21,14 @@ class VotarCasoDeUsoTest {
     private String cpfAssociado="23399623070";
     private ConsultarSessaoPautas consultarSessaoPautas = Mockito.mock(ConsultarSessaoPautas.class);
     private ValidacaoCpf validacaoCPF = Mockito.mock(ValidacaoCpf.class);
+    private GerenciadorEventos gerenciadorEventos = Mockito.mock(GerenciadorEventos.class);
 
 
     @Test
     void deveCadastrarVotoAssociado() {
 
 
-        CadastrarVoto cadastrarVoto = new VotarCasoDeUso(votacaoRepositorio,consultarSessaoPautas, validacaoCPF);
+        CadastrarVoto cadastrarVoto = new VotarCasoDeUso(votacaoRepositorio,consultarSessaoPautas, validacaoCPF,gerenciadorEventos);
         Mockito.when(validacaoCPF.isPermitidoVotar(cpfAssociado)).thenReturn(true);
         Mockito.when(consultarSessaoPautas.consultar(identificadorPauta)).thenReturn(new PautaSessaoDto(identificadorPauta));
 
@@ -43,7 +41,7 @@ class VotarCasoDeUsoTest {
 
     @Test
     void naoDeveCadastrarVotoDuplicado() {
-        CadastrarVoto cadastrarVoto = new VotarCasoDeUso(votacaoRepositorio,consultarSessaoPautas, validacaoCPF);
+        CadastrarVoto cadastrarVoto = new VotarCasoDeUso(votacaoRepositorio,consultarSessaoPautas, validacaoCPF,gerenciadorEventos);
         Mockito.when(validacaoCPF.isPermitidoVotar(cpfAssociado)).thenReturn(true);
         cadastrarVoto.execute("1234",cpfAssociado,true);
         try {
@@ -57,7 +55,7 @@ class VotarCasoDeUsoTest {
 
     @Test
     void deveLancarErroCPFInvalido() {
-        CadastrarVoto cadastrarVoto = new VotarCasoDeUso(votacaoRepositorio,consultarSessaoPautas, validacaoCPF);
+        CadastrarVoto cadastrarVoto = new VotarCasoDeUso(votacaoRepositorio,consultarSessaoPautas, validacaoCPF,gerenciadorEventos);
 
         try {
             Mockito.when(validacaoCPF.isPermitidoVotar(cpfAssociado)).thenReturn(false);

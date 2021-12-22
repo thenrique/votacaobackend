@@ -1,4 +1,4 @@
-package br.com.desafio.votacaoservice.infraestrutura.adapter.endpoint;
+package br.com.desafio.votacaoservice.infraestrutura.adapter.endpoint.sessaopauta;
 
 import br.com.desafio.votacaoservice.dominio.ConsultarSessaoPautas;
 import br.com.desafio.votacaoservice.dominio.dto.PautaSessaoDto;

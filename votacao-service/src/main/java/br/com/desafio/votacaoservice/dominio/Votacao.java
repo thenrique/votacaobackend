@@ -25,4 +25,13 @@ public class Votacao {
         Optional<Votacao> votacaoOptional = votacaoRepositorio.buscarVoto(identificadorPauta, cpfAssociado);
         return votacaoOptional.isPresent();
     }
+
+    @Override
+    public String toString() {
+        return "Votacao{" +
+                "associado=" + associado +
+                ", voto=" + voto +
+                ", identificadorPauta='" + identificadorPauta + '\'' +
+                '}';
+    }
 }
