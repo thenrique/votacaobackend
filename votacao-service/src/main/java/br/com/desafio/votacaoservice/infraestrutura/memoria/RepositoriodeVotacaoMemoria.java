@@ -3,6 +3,7 @@ package br.com.desafio.votacaoservice.infraestrutura.memoria;
 
 import br.com.desafio.votacaoservice.dominio.Votacao;
 import br.com.desafio.votacaoservice.dominio.VotacaoRepositorio;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Component
+@Profile("test")
 public class RepositoriodeVotacaoMemoria implements VotacaoRepositorio {
 
     private Set<Votacao> votosPauta = new HashSet<>();
