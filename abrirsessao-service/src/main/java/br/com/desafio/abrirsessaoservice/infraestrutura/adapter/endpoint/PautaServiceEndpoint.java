@@ -10,21 +10,24 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 @Component
 public class PautaServiceEndpoint implements PautaService {
 
 
-    private RestTemplate  restTemplate; ;
+    private RestTemplate  restTemplate = new RestTemplate() ;
 
     @Autowired
     private CircuitBreakerFactory circuitBreakerFactory;
 
     private Set<PautaDto> pautasCache = new HashSet();
 
-    private PautaServiceEndpoint instance;
-
+    public PautaServiceEndpoint(CircuitBreakerFactory circuitBreakerFactory) {
+        this.circuitBreakerFactory = circuitBreakerFactory;
+    }
 
     @Override
     public PautaDto buscarPauta(String identificador) {
@@ -40,11 +43,11 @@ public class PautaServiceEndpoint implements PautaService {
     }
 
     private PautaDto getPautasEmCache(String identificador) {
-        if(instance==null){
-            instance = new PautaServiceEndpoint();
-            restTemplate = new RestTemplate();
-            return null;
+        Optional<PautaDto> optionalPautaDto = pautasCache.stream().filter(pautaDto -> pautaDto.identificador().equalsIgnoreCase(identificador)).findFirst();
+        if(optionalPautaDto.isPresent()){
+            return optionalPautaDto.get();
         }
-        return instance.pautasCache.stream().filter(pautaDto -> pautaDto.identificador().equalsIgnoreCase(identificador)).findFirst().get();
+
+        return null;
     }
 }

@@ -43,7 +43,7 @@ public class Sessao {
     }
 
     public boolean isAberta() {
-        return LocalDateTime.now().isBefore(dataEncerramento);
+        return dataAbertura.isBefore(dataEncerramento);
     }
 
     public void abrir(SessaoRepositorio sessaoRepositorio) {

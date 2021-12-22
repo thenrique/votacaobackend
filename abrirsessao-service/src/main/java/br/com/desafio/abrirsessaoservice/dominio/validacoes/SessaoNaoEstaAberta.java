@@ -5,6 +5,6 @@ import br.com.desafio.abrirsessaoservice.dominio.Sessao;
 
 public class SessaoNaoEstaAberta extends RuntimeException {
     public SessaoNaoEstaAberta(Sessao sessao) {
-        super("A sessão da pauta não está aberta data início " + sessao.getDataAbertura() + " datafim" + sessao.getDataEncerramento());
+        super("A sessão da pauta não está aberta data início " + sessao.getDataAbertura() + " data fim" + sessao.getDataEncerramento());
     }
 }

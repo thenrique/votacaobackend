@@ -20,6 +20,7 @@ public class RepositoriodeSessaoMemoria implements SessaoRepositorio {
 
         sessoesAbertas.add(new Sessao(Long.valueOf(50),"123"));
         sessoesAbertas.add(new Sessao(Long.valueOf(50),"1235"));
+        sessoesAbertas.add(new Sessao(Long.valueOf(-1),"1236"));
     }
 
     @Override
