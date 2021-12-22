@@ -1,4 +1,4 @@
-package br.com.desafio.contabilizacaoservice.dominio.casodeuso.validacao;
+package br.com.desafio.exibirresultadoservice.casodeuso.validacao;
 
 public class SessaoNaoExiste extends RuntimeException {
     public SessaoNaoExiste(String identificadorPauta) {

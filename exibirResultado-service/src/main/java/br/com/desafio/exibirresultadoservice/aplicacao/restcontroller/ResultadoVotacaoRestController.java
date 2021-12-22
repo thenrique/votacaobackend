@@ -1,10 +1,11 @@
-package br.com.desafio.contabilizacaoservice.aplicacao.restcontroller;
+package br.com.desafio.exibirresultadoservice.aplicacao.restcontroller;
 
-import br.com.desafio.contabilizacaoservice.aplicacao.dto.PautaDto;
-import br.com.desafio.contabilizacaoservice.aplicacao.dto.ResultadoVotacaoDto;
-import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ExibirResultadoVotacao;
+
+import br.com.desafio.exibirresultadoservice.aplicacao.dto.PautaDto;
+import br.com.desafio.exibirresultadoservice.aplicacao.dto.ResultadoVotacaoDto;
+import br.com.desafio.exibirresultadoservice.casodeuso.ExibirResultadoVotacao;
+import br.com.desafio.exibirresultadoservice.casodeuso.ResultadoVotacao;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class ResultadoVotacaoRestController {
 
     @GetMapping( consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResultadoVotacaoDto apresentarResultado(@RequestBody PautaDto pautaDto){
-        ResultadoVotacaoDto resultadoVotacaoDto= exibirResultadoVotacao.executar(pautaDto.getIdentificador());
-        return resultadoVotacaoDto;
+        ResultadoVotacao resultadoVotacao= exibirResultadoVotacao.executar(pautaDto.getIdentificador());
+        return new ResultadoVotacaoDto(resultadoVotacao);
     }
 }

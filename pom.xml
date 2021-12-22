@@ -8,6 +8,7 @@
 		<module>pauta-service</module>
 		<module>abrirsessao-service</module>
         <module>votacao-service</module>
+        <module>exibirResultado-service</module>
     </modules>
 
 	<parent>

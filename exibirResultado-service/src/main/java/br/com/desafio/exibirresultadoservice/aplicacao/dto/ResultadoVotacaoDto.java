@@ -1,6 +1,6 @@
-package br.com.desafio.contabilizacaoservice.aplicacao.dto;
+package br.com.desafio.exibirresultadoservice.aplicacao.dto;
 
-import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacao;
+import br.com.desafio.exibirresultadoservice.casodeuso.ResultadoVotacao;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
