@@ -8,9 +8,9 @@ import br.com.desafio.abrirsessaoservice.dominio.casodeuso.AbrirSessaoVotacao;
 
 
 import br.com.desafio.abrirsessaoservice.dominio.dto.PautaDto;
-import br.com.desafio.abrirsessaoservice.dominio.validacoes.PautaDeIdentificadorInexistente;
 import br.com.desafio.abrirsessaoservice.dominio.validacoes.SessaoJaFoiAberta;
 import org.springframework.stereotype.Component;
+
 
 
 import java.util.Optional;
@@ -36,13 +36,11 @@ public class AbrirSessaoCasoDeUso implements AbrirSessaoVotacao {
             Sessao sessao = new Sessao(duracao,identificadorPauta);
             Optional<Sessao> sessaoOp = sessaoRepositorio.buscarSessaoPauta(identificadorPauta);
             if(sessaoOp.isPresent()){
-                if(sessaoOp.get().isAberta()){
+                if(!sessaoOp.get().isAberta()){
                     throw  new SessaoJaFoiAberta(identificadorPauta);
-                }else{
-                    sessao.abrir(sessaoRepositorio);
                 }
             }else{
-                throw new PautaDeIdentificadorInexistente();
+                sessao.abrir(sessaoRepositorio);
             }
 
        }

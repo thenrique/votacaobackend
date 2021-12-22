@@ -3,6 +3,7 @@ package br.com.desafio.abrirsessaoservice.infraestrutura.memoria;
 
 import br.com.desafio.abrirsessaoservice.dominio.Sessao;
 import br.com.desafio.abrirsessaoservice.dominio.SessaoRepositorio;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Component
+@Profile("test")
 public class RepositoriodeSessaoMemoria implements SessaoRepositorio {
 
     private Set<Sessao> sessoesAbertas = new HashSet<>();

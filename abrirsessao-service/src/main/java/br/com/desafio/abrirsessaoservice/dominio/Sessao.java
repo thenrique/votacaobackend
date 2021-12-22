@@ -24,6 +24,14 @@ public class Sessao {
         }
         this.dataEncerramento = dataAbertura.plusMinutes(duracao);
     }
+    public Sessao(Long duracao, String identificadorPauta, LocalDateTime dataAbertura, LocalDateTime dataEncerramento) {
+        this.dataAbertura = dataAbertura;
+        this.identificadorPauta = identificadorPauta;
+        if(duracao==null) {
+            duracao=DURACAO_PADRAO;
+        }
+        this.dataEncerramento = dataAbertura.plusMinutes(duracao);
+    }
 
     public Sessao(LocalDateTime aberturaSessao, LocalDateTime dataEncerramentoSessao) {
         this.dataAbertura = aberturaSessao;

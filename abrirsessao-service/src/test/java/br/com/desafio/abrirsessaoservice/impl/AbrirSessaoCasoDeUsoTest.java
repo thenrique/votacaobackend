@@ -5,7 +5,6 @@ import br.com.desafio.abrirsessaoservice.dominio.Sessao;
 import br.com.desafio.abrirsessaoservice.dominio.SessaoRepositorio;
 import br.com.desafio.abrirsessaoservice.dominio.casodeuso.impl.AbrirSessaoCasoDeUso;
 import br.com.desafio.abrirsessaoservice.dominio.dto.PautaDto;
-import br.com.desafio.abrirsessaoservice.dominio.validacoes.PautaDeIdentificadorInexistente;
 import br.com.desafio.abrirsessaoservice.dominio.validacoes.SessaoJaFoiAberta;
 import br.com.desafio.abrirsessaoservice.infraestrutura.memoria.RepositoriodeSessaoMemoria;
 import org.junit.jupiter.api.Test;
@@ -34,18 +33,6 @@ class AbrirSessaoCasoDeUsoTest {
         assertEquals(50,sessao.getDuracaoSesao().toMinutes());
     }
 
-    @Test
-     void naoDeveAbrirSessaoPautaInexistente() {
-
-        AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria,pautaService);
-        try {
-            abrirSessao.execute("1234", Long.valueOf(50));
-        } catch (PautaDeIdentificadorInexistente e) {
-            assertEquals( "Pauta inexistente com o identificador informado", e.getMessage());
-
-        }
-
-    }
 
     @Test
      void naoDeveAbrirSessaoPautaSessaoJaAberta() {

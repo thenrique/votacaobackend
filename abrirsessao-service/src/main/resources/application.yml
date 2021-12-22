@@ -3,5 +3,16 @@ server:
 spring:
   application:
     name: abrirsessao-service
-
+  datasource:
+    password: votacao
+    url: jdbc:postgresql://localhost:5432/sessao
+    username: votacao
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
 
