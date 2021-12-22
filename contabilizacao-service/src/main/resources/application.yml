@@ -1,0 +1,22 @@
+server:
+  port: 8081
+spring:
+  application:
+    name  : contabilizacao-service
+  kafka:
+    bootstrap-servers: localhost:29092
+  datasource:
+    password: votacao
+    url: jdbc:postgresql://localhost:5432/contabilizacao
+    username: votacao
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+topic:
+    name: votacao

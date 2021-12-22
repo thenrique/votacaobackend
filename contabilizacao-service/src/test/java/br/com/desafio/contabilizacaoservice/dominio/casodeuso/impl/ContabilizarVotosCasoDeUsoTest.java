@@ -1,11 +1,13 @@
 package br.com.desafio.contabilizacaoservice.dominio.casodeuso.impl;
 
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ContabilizarResultadoVotacao;
+import br.com.desafio.contabilizacaoservice.dominio.casodeuso.NotificacaoVotacaoEncerrada;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacao;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacaoRepositorio;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.validacao.ResultadoJaContabilizado;
 import br.com.desafio.contabilizacaoservice.infraestrutura.memoria.RepositorioResultadoVotacaoEmMemoria;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.Optional;
 
@@ -14,12 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ContabilizarVotosCasoDeUsoTest {
 
     private ResultadoVotacaoRepositorio resultadoVotacaoRepositorio = new RepositorioResultadoVotacaoEmMemoria();
+    private NotificacaoVotacaoEncerrada notificacaoVotacaoEncerrada = Mockito.mock(NotificacaoVotacaoEncerrada.class);
 
     private String identificadorPauta= "123";
 
     @Test
     void deveContabilizarTodosVotos() {
-        ContabilizarResultadoVotacao contabilizarVotosCasoDeUso = new ContabilizarVotosCasoDeUso(resultadoVotacaoRepositorio);
+        ContabilizarResultadoVotacao contabilizarVotosCasoDeUso = new ContabilizarVotosCasoDeUso(resultadoVotacaoRepositorio,notificacaoVotacaoEncerrada);
 
         contabilizarVotosCasoDeUso.execute(identificadorPauta);
 
@@ -32,7 +35,7 @@ class ContabilizarVotosCasoDeUsoTest {
 
     @Test
     void deveContabilizarTodosVotosApenasUmaVez() {
-        ContabilizarResultadoVotacao contabilizarVotosCasoDeUso = new ContabilizarVotosCasoDeUso(resultadoVotacaoRepositorio);
+        ContabilizarResultadoVotacao contabilizarVotosCasoDeUso = new ContabilizarVotosCasoDeUso(resultadoVotacaoRepositorio,notificacaoVotacaoEncerrada);
 
         try {
 

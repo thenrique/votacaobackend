@@ -9,4 +9,5 @@ public class ContabilizacaoServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(ContabilizacaoServiceApplication.class, args);
     }
+
 }
