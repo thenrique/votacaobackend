@@ -10,5 +10,6 @@ import java.util.Optional;
 @Component
 public interface ResultadoVotacaoRepositorioI extends JpaRepository<ResultadoVotacaoEntity, Long> {
 
-    Optional<ResultadoVotacaoEntity> findByIdentificador(String identificador);
+
+    Optional<ResultadoVotacaoEntity> findByIdenficadorPauta(String identificadorPauta);
 }

@@ -18,8 +18,7 @@ public class ResultadoVotacaoEntity {
     @SequenceGenerator( name="seq_id_resultado", sequenceName ="seq_id_resultado")
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator ="seq_id_resultado" )
     private Long id;
-
-    private String idenficadorPauta;
+ private String idenficadorPauta;
     private Long totalVotos;
     private Long todosSim;
     private Long todosNao;

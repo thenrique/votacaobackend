@@ -7,8 +7,8 @@
 		<module>contabilizacao-service</module>
 		<module>pauta-service</module>
 		<module>abrirsessao-service</module>
-        <module>votacao-service</module>
-        <module>exibirResultado-service</module>
+		<module>votacao-service</module>
+		<module>exibireesultado-service</module>
     </modules>
 
 	<parent>
@@ -75,6 +75,8 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+
 		</plugins>
 	</build>
 

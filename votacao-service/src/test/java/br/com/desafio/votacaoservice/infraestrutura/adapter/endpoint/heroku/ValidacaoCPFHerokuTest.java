@@ -15,7 +15,7 @@ class ValidacaoCPFHerokuTest {
     private CircuitBreaker circuitbreak = Mockito.mock(CircuitBreaker.class);
     private RestTemplate restTemplate = Mockito.mock(RestTemplate.class);
 
-    @Test
+
     void devePermitirCPFParaVotar() {
         ValidacaoCpf validacaoCPFHeroku = new ValidacaoCPFHeroku(circuitBreakerFactory);
         String cpf = "96607625002";

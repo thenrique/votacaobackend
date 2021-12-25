@@ -1,6 +1,7 @@
 package br.com.desafio.votacaoservice.infraestrutura.adapter.endpoint.mensageria.config;
 
 import br.com.desafio.votacaoservice.dominio.Votacao;
+import br.com.desafio.votacaoservice.dominio.dto.VotoDto;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -30,7 +31,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public ProducerFactory<String, Votacao> votacaoProducerFactory() {
+    public ProducerFactory<String, VotoDto> votacaoProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -39,7 +40,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, Votacao> kafkaTemplate() {
+    public KafkaTemplate<String, VotoDto> kafkaTemplate() {
         return new KafkaTemplate(votacaoProducerFactory());
     }
 }

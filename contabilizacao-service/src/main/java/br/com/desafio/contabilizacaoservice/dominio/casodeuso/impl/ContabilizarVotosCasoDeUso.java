@@ -2,10 +2,8 @@ package br.com.desafio.contabilizacaoservice.dominio.casodeuso.impl;
 
 
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.*;
-import br.com.desafio.contabilizacaoservice.dominio.casodeuso.validacao.ResultadoJaContabilizado;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,21 +19,24 @@ public class ContabilizarVotosCasoDeUso implements ContabilizarResultadoVotacao 
     }
 
     @Override
-    public void execute(String identificadorPauta) {
+    public void execute(VotoDto votoDto) {
 
-        Optional<ResultadoVotacao> optionalResultadoVotacao = resultadoVotacaoRepositorio.resultadoJaContabilizado(identificadorPauta);
-        if(optionalResultadoVotacao.isPresent()){
-            throw new ResultadoJaContabilizado();
-        }
-        List<Voto> votos = resultadoVotacaoRepositorio.buscarTodosVotos(identificadorPauta);
-        Long total= votos.stream().count();
-        Long totalSim = votos.stream().filter( voto -> voto.isVoto()).count();
-        Long totalNao = total-totalSim;
+        Optional<ResultadoVotacao> optionalResultadoVotacao = resultadoVotacaoRepositorio.resultadoJaContabilizado(votoDto.getIdentificadorPauta());
+        ResultadoVotacao resultadoVotacao =new ResultadoVotacao(votoDto.getIdentificadorPauta());
+            if(optionalResultadoVotacao.isPresent()) {
+                resultadoVotacao = optionalResultadoVotacao.get();
+            }
+            if(votoDto.isVoto()){
+                resultadoVotacao.incrementaVotoSim();
+            }else{
+                resultadoVotacao.incrementaVotoNao();
+            }
 
-        ResultadoVotacao resultadoVotacao = ResultadoVotacao.builder().idenficadorPauta(identificadorPauta).totalVotos(total).todosNao(totalNao).todosSim(totalSim).build();
-        resultadoVotacaoRepositorio.salvarResultado(resultadoVotacao, votos);
+            resultadoVotacaoRepositorio.salvarResultado(resultadoVotacao);
 
-        ResultadoDto resultadoDto = new ResultadoDto(identificadorPauta,total, totalSim,totalNao  );
-        notificacaoVotacaoEncerrada.executar(resultadoDto);
+            ResultadoDto resultadoDto = new ResultadoDto(votoDto.getIdentificadorPauta(),resultadoVotacao.getTotalVotos()  , resultadoVotacao.getTodosSim(),resultadoVotacao.getTodosNao()  );
+            notificacaoVotacaoEncerrada.executar(resultadoDto);
+
+
     }
 }
