@@ -35,8 +35,6 @@ public class ContabilizarVotosCasoDeUso implements ContabilizarResultadoVotacao 
 
             resultadoVotacaoRepositorio.salvarResultado(resultadoVotacao);
 
-            ResultadoDto resultadoDto = new ResultadoDto(votoDto.getIdentificadorPauta(),resultadoVotacao.getTotalVotos()  , resultadoVotacao.getTodosSim(),resultadoVotacao.getTodosNao()  );
-            notificacaoVotacaoEncerrada.executar(resultadoDto);
 
 
     }
