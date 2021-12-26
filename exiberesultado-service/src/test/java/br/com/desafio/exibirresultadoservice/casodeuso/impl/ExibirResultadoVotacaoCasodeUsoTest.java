@@ -5,7 +5,7 @@ import br.com.desafio.exibirresultadoservice.casodeuso.ExibirResultadoRepositori
 import br.com.desafio.exibirresultadoservice.casodeuso.ExibirResultadoVotacao;
 import br.com.desafio.exibirresultadoservice.casodeuso.ResultadoVotacao;
 import br.com.desafio.exibirresultadoservice.casodeuso.validacao.ResultadoVotacaoNaoContabilizado;
-import br.com.desafio.exibirresultadoservice.memoria.RepositorioExibirResultadoEmMemoria;
+import br.com.desafio.exibirresultadoservice.infraestrutura.memoria.RepositorioExibirResultadoEmMemoria;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

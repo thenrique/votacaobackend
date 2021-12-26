@@ -1,6 +1,7 @@
-package br.com.desafio.exibirresultadoservice.memoria;
+package br.com.desafio.exibirresultadoservice.infraestrutura.memoria;
 
 
+import br.com.desafio.exibirresultadoservice.aplicacao.dto.ResultadoDto;
 import br.com.desafio.exibirresultadoservice.casodeuso.ExibirResultadoRepositorio;
 import br.com.desafio.exibirresultadoservice.casodeuso.ResultadoVotacao;
 import org.springframework.context.annotation.Profile;
@@ -25,5 +26,10 @@ public class RepositorioExibirResultadoEmMemoria implements ExibirResultadoRepos
     @Override
     public Optional<ResultadoVotacao> resultadoJaContabilizado(String identificadorPauta) {
         return lista.stream().filter(resultadoVotacao -> resultadoVotacao.getIdenficadorPauta().equalsIgnoreCase(identificadorPauta)).findFirst();
+    }
+
+    @Override
+    public void salvarResultado(ResultadoVotacao resultadoVotacao) {
+        lista.add(resultadoVotacao);
     }
 }

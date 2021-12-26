@@ -3,6 +3,7 @@ package br.com.desafio.exibirresultadoservice.casodeuso;
 import lombok.Builder;
 import lombok.Getter;
 
+
 @Builder
 @Getter
 public class ResultadoVotacao {
@@ -11,5 +12,6 @@ public class ResultadoVotacao {
     private Long totalVotos;
     private Long todosSim;
     private Long todosNao;
+    private boolean votacaoEncerrada;
 
 }
