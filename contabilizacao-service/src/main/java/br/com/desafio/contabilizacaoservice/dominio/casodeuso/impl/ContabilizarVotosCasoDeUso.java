@@ -1,6 +1,7 @@
 package br.com.desafio.contabilizacaoservice.dominio.casodeuso.impl;
 
 
+import br.com.desafio.contabilizacaoservice.dominio.VotoDto;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.*;
 import org.springframework.stereotype.Component;
 

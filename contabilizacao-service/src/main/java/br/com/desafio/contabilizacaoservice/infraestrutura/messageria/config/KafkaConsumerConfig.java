@@ -1,6 +1,6 @@
 package br.com.desafio.contabilizacaoservice.infraestrutura.messageria.config;
 
-import br.com.desafio.contabilizacaoservice.dominio.casodeuso.VotoDto;
+import br.com.desafio.contabilizacaoservice.dominio.VotoDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +10,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
@@ -30,12 +31,16 @@ public class KafkaConsumerConfig {
     @Bean
     public ConsumerFactory<String, VotoDto> votoConsumerFactory()
     {
+
         Map<String, Object> config = new HashMap<>();
 
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapAddress);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_json");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group-voto");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        config.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
+        config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
+
 
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
                 new JsonDeserializer<>(VotoDto.class));
@@ -45,7 +50,9 @@ public class KafkaConsumerConfig {
     public ConcurrentKafkaListenerContainerFactory<String, VotoDto> votoKafkaListenerFactory()
     {
         ConcurrentKafkaListenerContainerFactory<String, VotoDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setMissingTopicsFatal(false);
         factory.setConsumerFactory(votoConsumerFactory());
+
         return  factory;
     }
 }

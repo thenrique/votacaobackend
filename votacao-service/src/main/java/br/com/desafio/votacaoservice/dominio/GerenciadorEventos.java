@@ -7,13 +7,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Component
 public class GerenciadorEventos {
 
     private final NotificarVotoComputado notificarVotoComputado;
-    private List<AcoesEventos> eventos = new ArrayList();
+    private List<AcoesEventos> eventos;
 
     @Autowired
     public GerenciadorEventos(NotificarVotoComputado notificarVotoComputado) {
@@ -21,7 +22,7 @@ public class GerenciadorEventos {
     }
 
     public List<AcoesEventos> eventosPosCadastrar(){
-        eventos.add( new NotificacaoVotoComputadoEvento(notificarVotoComputado));
+        eventos= Arrays.asList(new NotificacaoVotoComputadoEvento(notificarVotoComputado));
         return eventos;
     }
 

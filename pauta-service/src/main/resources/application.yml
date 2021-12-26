@@ -6,7 +6,7 @@ spring:
     name: pauta-service
   datasource:
     password: votacao
-    url: jdbc:postgresql://postgres:5432/pauta
+    url: jdbc:postgresql://localhost:5432/pauta
     username: votacao
   jpa:
     hibernate:

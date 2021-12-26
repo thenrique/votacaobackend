@@ -22,6 +22,7 @@ public class NotificacaoKafka implements NotificarVotoComputado {
     }
 
     @Override
+
     public void execute(VotoDto votoDto) {
         kafkaTemplate.send(topic,votoDto).
                 addCallback(

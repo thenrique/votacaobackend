@@ -20,5 +20,6 @@ public class NotificacaoVotoComputadoEvento implements AcoesEventos {
     public void execute(Votacao votacao) {
         VotoDto votoDto = new VotoDto(votacao.getAssociado().cpf(),votacao.isVoto(),votacao.getIdentificadorPauta());
         notificarVotoComputado.execute(votoDto);
+
     }
 }

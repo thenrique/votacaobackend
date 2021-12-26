@@ -12,7 +12,8 @@ import java.util.Optional;
 
 
 @Repository
-public class ResultadoVotacaoRepositorioPostgres implements ResultadoVotacaoRepositorio {
+public class
+ResultadoVotacaoRepositorioPostgres implements ResultadoVotacaoRepositorio {
 
     private final ResultadoVotacaoRepositorioI resultadoVotacaoRepositorioI;
 
@@ -23,11 +24,22 @@ public class ResultadoVotacaoRepositorioPostgres implements ResultadoVotacaoRepo
 
     @Override
     public void salvarResultado(ResultadoVotacao resultadoVotacao) {
+
         ResultadoVotacaoEntity resultadoVotacaoEntity = ResultadoVotacaoEntity.builder().
                                         idenficadorPauta(resultadoVotacao.getIdenficadorPauta())
                                         .todosNao(resultadoVotacao.getTodosNao())
                 .totalVotos(resultadoVotacao.getTotalVotos()).todosSim(resultadoVotacao.getTodosSim()).build();
-        resultadoVotacaoRepositorioI.save(resultadoVotacaoEntity);
+        Optional<ResultadoVotacaoEntity> optionalResultado = resultadoVotacaoRepositorioI.findByIdenficadorPauta(resultadoVotacao.getIdenficadorPauta());
+
+        if(optionalResultado.isPresent()){
+            optionalResultado.get().setTodosNao(resultadoVotacaoEntity.getTodosNao());
+            optionalResultado.get().setTodosSim(resultadoVotacao.getTodosSim());
+            optionalResultado.get().setTotalVotos(resultadoVotacao.getTotalVotos());
+            resultadoVotacaoRepositorioI.save(optionalResultado.get());
+        }else{
+            resultadoVotacaoRepositorioI.save(resultadoVotacaoEntity);
+        }
+
     }
 
     @Override
