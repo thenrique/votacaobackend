@@ -1,7 +1,7 @@
 package br.com.desafio.contabilizacaoservice.infraestrutura.messageria.consumer;
 
 
-import br.com.desafio.contabilizacaoservice.dominio.VotoDto;
+import br.com.desafio.contabilizacaoservice.dominio.casodeuso.dto.VotoDto;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ContabilizarResultadoVotacao;
 
 import org.springframework.beans.factory.annotation.Autowired;

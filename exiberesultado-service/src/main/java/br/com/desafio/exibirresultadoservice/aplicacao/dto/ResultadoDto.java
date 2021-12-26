@@ -1,6 +1,7 @@
 package br.com.desafio.exibirresultadoservice.aplicacao.dto;
 
 import br.com.desafio.exibirresultadoservice.casodeuso.ResultadoVotacao;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +20,10 @@ public class ResultadoDto {
     private Long votosSim;
     private Long votosNao;
     private boolean votacaoEncerrada;
+
+    @JsonIgnore
     private LocalDateTime dataInicio;
+    @JsonIgnore
     private LocalDateTime dataEncerramentodo;
 
 

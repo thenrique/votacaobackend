@@ -1,6 +1,6 @@
 package br.com.desafio.contabilizacaoservice.infraestrutura.memoria;
 
-import br.com.desafio.contabilizacaoservice.dominio.VotoDto;
+import br.com.desafio.contabilizacaoservice.dominio.casodeuso.dto.VotoDto;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacao;
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacaoRepositorio;
 import org.springframework.context.annotation.Profile;

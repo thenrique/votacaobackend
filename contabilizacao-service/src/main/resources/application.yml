@@ -24,6 +24,6 @@ spring:
     show-sql: true
 
 topic:
-  name: resultadovotacao
+  name: resultado
 votacaotopic:
   name: votornotificar

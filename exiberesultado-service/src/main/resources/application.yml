@@ -18,6 +18,9 @@ spring:
     show-sql: true
   kafka:
     bootstrap-servers: localhost:29092
-topic:
-  name: resultadovotacao
+    consumer:
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      producer:
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 

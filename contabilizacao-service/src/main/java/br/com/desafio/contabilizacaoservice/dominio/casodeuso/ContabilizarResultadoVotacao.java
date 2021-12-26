@@ -1,7 +1,7 @@
 package br.com.desafio.contabilizacaoservice.dominio.casodeuso;
 
 
-import br.com.desafio.contabilizacaoservice.dominio.VotoDto;
+import br.com.desafio.contabilizacaoservice.dominio.casodeuso.dto.VotoDto;
 
 public interface ContabilizarResultadoVotacao {
 

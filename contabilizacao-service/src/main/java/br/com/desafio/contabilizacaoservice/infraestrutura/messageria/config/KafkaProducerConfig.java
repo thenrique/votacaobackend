@@ -1,7 +1,6 @@
 package br.com.desafio.contabilizacaoservice.infraestrutura.messageria.config;
 
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoDto;
-import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacao;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -37,6 +36,8 @@ public class KafkaProducerConfig {
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        configProps.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
+        configProps.put(JsonSerializer.TYPE_MAPPINGS, "resultadoDto:br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoDto");
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 

@@ -24,7 +24,7 @@ public class NotificacaoVotacaoEncerradaKafka implements NotificacaoVotacaoEncer
     public void executar(ResultadoDto resultadoDto) {
         kafkaTemplate.send(topic,resultadoDto).
                 addCallback(
-                        sucess-> logger.info("Mensagem Enviada" + resultadoDto.identificadorPauta()),
+                        sucess-> logger.info("Mensagem Enviada" + resultadoDto.getIdentificadorPauta()),
                         fail -> logger.info("Deu erro" + fail.getMessage()));
     }
 }

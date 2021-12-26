@@ -1,4 +1,4 @@
-package br.com.desafio.contabilizacaoservice.dominio;
+package br.com.desafio.contabilizacaoservice.dominio.casodeuso.dto;
 
 import br.com.desafio.contabilizacaoservice.dominio.casodeuso.ResultadoVotacao;
 import lombok.Getter;

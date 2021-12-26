@@ -2,12 +2,8 @@ package br.com.desafio.exibirresultadoservice.infraestrutura.postgres.entidade;
 
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Data
 @Builder
@@ -20,6 +16,7 @@ public class ResultadoVotacaoEntidade {
 
 
     @Id
+
     @SequenceGenerator( name="seq_id_resultado", sequenceName ="seq_id_resultado")
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator ="seq_id_resultado" )
     private Long id;

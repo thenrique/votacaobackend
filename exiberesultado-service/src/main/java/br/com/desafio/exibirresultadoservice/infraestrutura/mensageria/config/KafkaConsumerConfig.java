@@ -1,7 +1,7 @@
 
 package br.com.desafio.exibirresultadoservice.infraestrutura.mensageria.config;
 
-import br.com.desafio.exibirresultadoservice.casodeuso.dto.ResultadoVotacaoDto;
+import br.com.desafio.exibirresultadoservice.casodeuso.dto.ResultadoDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +13,7 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,18 +25,14 @@ public class KafkaConsumerConfig {
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
 
-    @Value(value = "${votacaotopic.name}")
-    private String topic;
-
-
     @Bean
-    public ConsumerFactory<String,ResultadoVotacaoDto > resultadoConsumerFactory()
+    public ConsumerFactory<String, ResultadoDto> resultadoConsumerFactory()
     {
 
         Map<String, Object> config = new HashMap<>();
 
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapAddress);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group-resultado");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_exibirresultado");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         config.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
@@ -44,13 +41,13 @@ public class KafkaConsumerConfig {
 
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
                 new JsonDeserializer<>(
-                        ResultadoVotacaoDto.class));
+                        ResultadoDto.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, ResultadoVotacaoDto> resultadoKafkaListenerFactory()
+    public ConcurrentKafkaListenerContainerFactory<String, ResultadoDto> resultadoKafkaListenerFactory()
     {
-        ConcurrentKafkaListenerContainerFactory<String, ResultadoVotacaoDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<String, ResultadoDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setMissingTopicsFatal(false);
         factory.setConsumerFactory(resultadoConsumerFactory());
 
