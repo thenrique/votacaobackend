@@ -4,11 +4,11 @@ spring:
   application:
     name  : contabilizacao-service
   kafka:
-    bootstrap-servers: localhost:29092
+    bootstrap-servers: postgres:29092
 
   datasource:
     password: votacao
-    url: jdbc:postgresql://localhost:5432/contabilizacao
+    url: jdbc:postgresql://postgres:5432/contabilizacao
     username: votacao
   jpa:
     hibernate:

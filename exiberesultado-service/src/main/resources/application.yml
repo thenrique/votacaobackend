@@ -2,4 +2,4 @@ server:
   port: 8087
 spring:
   application:
-      name : exibirresultadoservice
+      name : exiberesultadoservice

@@ -1,6 +1,61 @@
 version: '3.3'
 
 services:
+  abrirsessao:
+    build: ./abrirsessao-service
+    image: abrirsessao-service:0.0.1
+    ports:
+      - 8084:8084
+    depends_on:
+      - postgres
+      - kafka
+    command: java - jar *.jar
+    networks:
+      - postgres
+  contabilizacao:
+    build: ./contabilizacao-service
+    image: contabilizacao-service:0.0.1
+    ports:
+      - 8081:8081
+    depends_on:
+      - postgres
+      - kafka
+    command: java - jar *.jar
+    networks:
+      - postgres
+  exiberesultado:
+    build: ./exiberesultado-service
+    image: exiberesultado-service:0.0.1
+    ports:
+      - 8087:8087
+    depends_on:
+      - postgres
+      - kafka
+    command: java - jar *.jar
+    networks:
+      - postgres
+  pauta:
+    build: ./pauta-service
+    image: pauta-service:0.0.1
+    ports:
+      - 8082:8082
+    depends_on:
+      - postgres
+      - kafka
+    command: java - jar *.jar
+    networks:
+      - postgres
+  votacao:
+    build: ./votacao-service
+    image: votacao-service:0.0.1
+    ports:
+      - 8085:8085
+    depends_on:
+      - postgres
+      - kafka
+    command: java - jar *.jar
+    networks:
+      - postgres
   postgres:
     container_name: postgres
     image: postgres
