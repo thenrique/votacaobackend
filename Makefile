@@ -13,3 +13,6 @@ run:
 
 down:
 	docker-compose down
+
+build-mvn:
+	mvn clean package spring-boot:build-image
