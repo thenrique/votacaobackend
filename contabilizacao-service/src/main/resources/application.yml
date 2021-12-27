@@ -4,7 +4,7 @@ spring:
   application:
     name  : contabilizacao-service
   kafka:
-    bootstrap-servers: localhost:29092
+    bootstrap-servers: broker-kafka:29092
     consumer:
       enable-auto-commit: false
       auto-offset-reset: earliest
@@ -12,7 +12,7 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   datasource:
     password: votacao
-    url: jdbc:postgresql://localhost:5432/contabilizacao
+    url: jdbc:postgresql://postgres:5432/contabilizacao
     username: votacao
   jpa:
     hibernate:

@@ -5,7 +5,7 @@ spring:
     name: votacao-service
   datasource:
     password: votacao
-    url: jdbc:postgresql://localhost:5432/votacao
+    url: jdbc:postgresql://postgres:5432/votacao
     username: votacao
   jpa:
     hibernate:

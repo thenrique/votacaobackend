@@ -13,7 +13,7 @@ public class ConsultarSessaoPautasEndpoint implements ConsultarSessaoPautas {
 
     @Override
     public PautaSessaoDto consultar(String identificadorPauta) {
-        PautaSessaoDto pautaSessaoDto = restTemplate.getForObject("http://localhost:8084/v1/api/sessaoPauta/get/"+identificadorPauta,PautaSessaoDto.class);
+        PautaSessaoDto pautaSessaoDto = restTemplate.getForObject("http://abrirsessao:8084/v1/api/sessaoPauta/get/"+identificadorPauta,PautaSessaoDto.class);
         return pautaSessaoDto;
     }
 }

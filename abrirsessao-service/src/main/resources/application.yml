@@ -5,7 +5,7 @@ spring:
     name: abrirsessao-service
   datasource:
     password: votacao
-    url: jdbc:postgresql://localhost:5432/sessao
+    url: jdbc:postgresql://postgres:5432/sessao
     username: votacao
   jpa:
     hibernate:
