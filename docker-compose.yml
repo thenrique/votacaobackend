@@ -1,70 +1,78 @@
-version: '3.3'
+version: '3.5'
 
 services:
   abrirsessao:
     build: ./abrirsessao-service
     image: abrirsessao-service:0.0.1
     ports:
-      - 8084:8084
+      - "8084:8084"
     depends_on:
       - postgres
-      - kafka
     command: java - jar *.jar
     networks:
       - postgres
-      - pautaservice
+      - default
+    links:
+      - pauta
   contabilizacao:
       build: ./contabilizacao-service
       image: contabilizacao-service:0.0.1
       ports:
-        - 8081:8081
+        - "8081:8081"
       depends_on:
         - postgres
         - kafka
       command: java - jar *.jar
       networks:
         - postgres
+        - default
         - broker-kafka
+      links:
         - abrirsessao
+        - kafka
   exiberesultado:
       build: ./exiberesultado-service
       image: exiberesultado-service:0.0.1
       ports:
-        - 8087:8087
+        - "8087:8087"
       depends_on:
         - postgres
         - kafka
       command: java - jar *.jar
       networks:
         - postgres
-        - broker-kafka
-        - abrirsessao
+        - default
+      links:
+        - kafka
   pauta:
       build: ./pauta-service
       image: pauta-service:0.0.1
       ports:
-        - 8082:8082
+        - "8082:8082"
       depends_on:
         - postgres
       command: java - jar *.jar
       networks:
         - postgres
-        - abrirsessao
+        - default
+      external_links:
         - pautaservice
+
   votacao:
       build: ./votacao-service
       image: votacao-service:0.0.1
       ports:
-        - 8085:8085
+        - "8085:8085"
       depends_on:
         - postgres
         - kafka
       command: java - jar *.jar
       networks:
         - postgres
-        - broker-kafka
+        - default
+      links:
         - abrirsessao
-        - pautaservice
+        - kafka
   postgres:
     container_name: postgres
     image: postgres
@@ -102,7 +110,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
-      - 22181:2181
+      - "22181:2181"
     networks:
       - broker-kafka
   kafka:
@@ -110,13 +118,13 @@ services:
     depends_on:
       - zookeeper
     ports:
-      - 29092:29092
+      - "29092:29092"
     networks:
           - broker-kafka
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://broker-kafka:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -126,10 +134,12 @@ networks:
     driver: bridge
   broker-kafka:
     driver: bridge
-  abrirsessao:
-    driver: bridge
-  pautaservice:
-    driver: bridge
+    external:
+      name: broker-kafka
+  default:
+    external:
+      name: pautaservice
+
 volumes:
   postgres:
   pgadmin:

@@ -36,7 +36,8 @@ public class PautaServiceEndpoint implements PautaService {
         if(pautaCache!=null)
             return pautaCache;
 
-        String url = "http://pautaservice:8082/v1/api/pauta/get/" + identificador;
+        String url = "http://pauta:8082/v1/api/pauta/get/" + identificador;
+        System.out.println(url);
         PautaDto pautaDto = circuitbreak.run(() -> restTemplate.getForObject(url, PautaDto.class));
         pautasCache.add(pautaDto);
         return pautaDto;
