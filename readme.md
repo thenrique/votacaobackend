@@ -2,4 +2,4 @@
 Projeto VotaçãoBackend
 
 
-![VotacaoBackend](/imgs/Projeto e Design.png "Projeto e Design VotacaoBackend")
+![VotacaoBackend](/imgs/Projeto_Design.png "Projeto e Design VotacaoBackend")
