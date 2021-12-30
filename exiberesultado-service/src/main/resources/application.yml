@@ -17,7 +17,7 @@ spring:
         format_sql: true
     show-sql: true
   kafka:
-    bootstrap-servers: kafka:29092
+    bootstrap-servers: broker:29092
     consumer:
       enable-auto-commit: false
       auto-offset-reset: earliest

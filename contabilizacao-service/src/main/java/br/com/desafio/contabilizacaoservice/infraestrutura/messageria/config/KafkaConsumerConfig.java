@@ -24,6 +24,9 @@ public class KafkaConsumerConfig {
     @Value(value = "${votacaotopic.name}")
     private String topic;
 
+    @Value(value = "${spring.kafka.bootstrap-servers}")
+    private String bootstrapAddress;
+
 
     @Bean
     public ConsumerFactory<String, VotoDto> votoConsumerFactory()
@@ -31,7 +34,7 @@ public class KafkaConsumerConfig {
 
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"kafka:29092");
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapAddress);
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "group-voto");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
