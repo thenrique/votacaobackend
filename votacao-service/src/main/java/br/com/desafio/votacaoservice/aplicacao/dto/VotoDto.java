@@ -1,29 +1,28 @@
 package br.com.desafio.votacaoservice.aplicacao.dto;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@Getter
 @NoArgsConstructor
 public class VotoDto {
 
+    @NotNull
+    @NotEmpty
     private String identificadorAssociado;
-    private boolean voto;
+    @NotNull
+    private Boolean voto;
+    @NotNull @NotEmpty
     private String identificadorPauta;
 
-    public VotoDto(String identificadorAssociado, boolean voto, String identificadorPauta) {
+    public VotoDto(String identificadorAssociado, Boolean voto, String identificadorPauta) {
         this.identificadorAssociado = identificadorAssociado;
         this.voto = voto;
         this.identificadorPauta = identificadorPauta;
     }
 
-    public String getIdentificadorPauta() {
-        return identificadorPauta;
-    }
-
-    public String getIdentificadorAssociado() {
-        return identificadorAssociado;
-    }
-
-    public boolean isVoto() {
-        return voto;
-    }
 }

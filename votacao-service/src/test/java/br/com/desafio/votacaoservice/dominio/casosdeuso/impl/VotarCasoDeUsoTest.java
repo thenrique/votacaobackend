@@ -1,7 +1,7 @@
 package br.com.desafio.votacaoservice.dominio.casosdeuso.impl;
 
 import br.com.desafio.votacaoservice.dominio.*;
-import br.com.desafio.votacaoservice.dominio.casosdeuso.CadastrarVoto;
+import br.com.desafio.votacaoservice.dominio.CadastrarVoto;
 import br.com.desafio.votacaoservice.dominio.dto.PautaSessaoDto;
 import br.com.desafio.votacaoservice.dominio.validacao.AssociadoJaComputouVoto;
 import br.com.desafio.votacaoservice.dominio.validacao.CPFInvalido;

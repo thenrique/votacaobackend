@@ -1,4 +1,4 @@
-package br.com.desafio.votacaoservice.dominio.casosdeuso;
+package br.com.desafio.votacaoservice.dominio;
 
 
 public interface CadastrarVoto {

@@ -2,7 +2,7 @@ package br.com.desafio.votacaoservice.dominio.casosdeuso.impl;
 
 
 import br.com.desafio.votacaoservice.dominio.*;
-import br.com.desafio.votacaoservice.dominio.casosdeuso.CadastrarVoto;
+import br.com.desafio.votacaoservice.dominio.CadastrarVoto;
 import br.com.desafio.votacaoservice.dominio.dto.PautaSessaoDto;
 import br.com.desafio.votacaoservice.dominio.validacao.AssociadoJaComputouVoto;
 import org.springframework.stereotype.Component;
@@ -35,7 +35,7 @@ public class VotarCasoDeUso implements CadastrarVoto {
             Votacao votacao = new Votacao(associado,voto,identificadorPauta);
             Optional<Votacao> votacaoOptional = votacaoRepositorio.buscarVoto(identificadorPauta, associado);
             if(votacaoOptional.isPresent()){
-                throw new AssociadoJaComputouVoto(identificadorPauta,associado);
+                throw new AssociadoJaComputouVoto(associado,identificadorPauta);
             }
             votacao.votar(votacao, votacaoRepositorio);
             gerenciadorEventos.executarPosCadastrado(votacao);
