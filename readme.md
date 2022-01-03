@@ -30,6 +30,16 @@ Com o docker e docker compose instalados
 
 1. docker-compose up -d
 
+Documentação da api:
+
+Pauta-Service: http://localhost:8082/swagger-ui/
+AbrirSessao-Service: http://localhost:8084/swagger-ui/
+votacao-Service: http://localhost:8085/swagger-ui/
+Contabilizacao-Service: http://localhost:8081/swagger-ui/
+ExibeResultado-Service: http://localhost:8087/swagger-ui/
+
+
+
 
 Pendências e Melhorias
 

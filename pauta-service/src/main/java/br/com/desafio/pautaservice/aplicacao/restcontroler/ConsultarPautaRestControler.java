@@ -8,7 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("v1/api/pauta")
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@RequestMapping("/v1/api/pauta")
 @RestController
 public class ConsultarPautaRestControler {
 
@@ -21,7 +25,7 @@ public class ConsultarPautaRestControler {
 
 
     @GetMapping("/get/{identificadorPauta}")
-    public ResponseEntity<ResponsePautaDto> buscarPauta(@PathVariable String identificadorPauta){
+    public ResponseEntity<ResponsePautaDto> buscarPauta(@PathVariable @Valid @NotEmpty @NotNull String identificadorPauta){
         try {
             Pauta pauta = consultarPauta.execute(identificadorPauta);
             ResponsePautaDto responsePautaDto = new ResponsePautaDto(pauta.getIdentificador(), pauta.getNome(), true);
