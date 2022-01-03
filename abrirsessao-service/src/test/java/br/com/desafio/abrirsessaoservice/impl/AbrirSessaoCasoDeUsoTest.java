@@ -21,7 +21,7 @@ class AbrirSessaoCasoDeUsoTest {
 
     @Test
      void deveAbrirUmaSessao() {
-        PautaDto pauta = new PautaDto("1236");
+        PautaDto pauta = new PautaDto("1236",true,"");
 
         AbrirSessaoCasoDeUso abrirSessao = new AbrirSessaoCasoDeUso(repositorioEmMemoria,pautaService);
         Mockito.when(pautaService.buscarPauta("123")).thenReturn(pauta);

@@ -35,7 +35,7 @@ public class CadastrarVotoRestControler {
             logger.error(e.getMessage());
             return ResponseEntity.ok(new RespostaVotoDto(false, e.getMessage()));
         }
-        return ResponseEntity.ok(new RespostaVotoDto(true));
+        return ResponseEntity.ok(new RespostaVotoDto(true,"Voto Computado"));
     }
 
 }

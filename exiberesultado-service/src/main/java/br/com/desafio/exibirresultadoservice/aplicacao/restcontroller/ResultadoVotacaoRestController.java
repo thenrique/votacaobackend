@@ -8,6 +8,8 @@ import br.com.desafio.exibirresultadoservice.casodeuso.ResultadoVotacao;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequestMapping("v1/api/resultado")
 @RestController
 public class ResultadoVotacaoRestController {
@@ -19,7 +21,7 @@ public class ResultadoVotacaoRestController {
     }
 
     @PostMapping(value ="/exibir" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultadoDto apresentarResultado(@RequestBody PautaDto pautaDto){
+    public ResultadoDto apresentarResultado(@RequestBody @Valid PautaDto pautaDto){
         ResultadoVotacao resultadoVotacao= exibirResultadoVotacao.executar(pautaDto.getIdentificador());
         return new ResultadoDto(resultadoVotacao);
     }

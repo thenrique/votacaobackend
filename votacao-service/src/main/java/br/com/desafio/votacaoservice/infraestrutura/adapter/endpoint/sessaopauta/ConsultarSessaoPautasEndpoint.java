@@ -2,6 +2,8 @@ package br.com.desafio.votacaoservice.infraestrutura.adapter.endpoint.sessaopaut
 
 import br.com.desafio.votacaoservice.dominio.ConsultarSessaoPautas;
 import br.com.desafio.votacaoservice.dominio.dto.PautaSessaoDto;
+import br.com.desafio.votacaoservice.infraestrutura.adapter.endpoint.sessaopauta.validacao.ErroIntegracaoPautaService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,10 +12,19 @@ public class ConsultarSessaoPautasEndpoint implements ConsultarSessaoPautas {
 
     private RestTemplate restTemplate= new RestTemplate();
 
+    private String enderecoapisessao;
+
+    public ConsultarSessaoPautasEndpoint(@Value("${sessao.endereco.endpoint}") String enderecoapisessao){
+        this.enderecoapisessao = enderecoapisessao;
+    }
 
     @Override
     public PautaSessaoDto consultar(String identificadorPauta) {
-        PautaSessaoDto pautaSessaoDto = restTemplate.getForObject("http://abrirsessao:8084/v1/api/sessaoPauta/get/"+identificadorPauta,PautaSessaoDto.class);
-        return pautaSessaoDto;
+        PautaSessaoDto pautaSessaoDto = restTemplate.getForObject(enderecoapisessao+identificadorPauta,PautaSessaoDto.class);
+        if(pautaSessaoDto.sucesso()){
+            return pautaSessaoDto;
+        }
+        throw new ErroIntegracaoPautaService(pautaSessaoDto.message());
+
     }
 }

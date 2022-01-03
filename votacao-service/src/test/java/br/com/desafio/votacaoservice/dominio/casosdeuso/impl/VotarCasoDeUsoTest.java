@@ -30,7 +30,7 @@ class VotarCasoDeUsoTest {
 
         CadastrarVoto cadastrarVoto = new VotarCasoDeUso(votacaoRepositorio,consultarSessaoPautas, validacaoCPF,gerenciadorEventos);
         Mockito.when(validacaoCPF.isPermitidoVotar(cpfAssociado)).thenReturn(true);
-        Mockito.when(consultarSessaoPautas.consultar(identificadorPauta)).thenReturn(new PautaSessaoDto(identificadorPauta));
+        Mockito.when(consultarSessaoPautas.consultar(identificadorPauta)).thenReturn(new PautaSessaoDto(identificadorPauta,true,""));
 
         cadastrarVoto.execute(identificadorPauta,cpfAssociado,true);
 

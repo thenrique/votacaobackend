@@ -22,7 +22,7 @@ class ConsultarSessaoCasoDeUsoTest {
     @Test
     void deveBuscarSessaoParaCadastrarAtiva() {
         ConsultarSessaoVotacao consultarSessaoVotacao = new ConsultarSessaoCasoDeUso(sessaoRepositorio,pautaService);
-        Mockito.when(pautaService.buscarPauta(identificadorPauta)).thenReturn(new PautaDto(identificadorPauta));
+        Mockito.when(pautaService.buscarPauta(identificadorPauta)).thenReturn(new PautaDto(identificadorPauta,true,""));
 
         Sessao sessao = consultarSessaoVotacao.buscarSessao(identificadorPauta);
         assertNotNull(sessao);
@@ -33,7 +33,7 @@ class ConsultarSessaoCasoDeUsoTest {
     void deveLancarErroSessaoNaoExiste() {
         String pauta = "12366";
         ConsultarSessaoVotacao consultarSessaoVotacao = new ConsultarSessaoCasoDeUso(sessaoRepositorio,pautaService);
-        Mockito.when(pautaService.buscarPauta(pauta)).thenReturn(new PautaDto(pauta));
+        Mockito.when(pautaService.buscarPauta(pauta)).thenReturn(new PautaDto(pauta,true,""));
         boolean erro=false;
         try {
             Sessao sessao = consultarSessaoVotacao.buscarSessao(pauta);
@@ -48,7 +48,7 @@ class ConsultarSessaoCasoDeUsoTest {
     void deveLancarErroSessaoNaoEstaAberta() {
         String pauta = "1236";
         ConsultarSessaoVotacao consultarSessaoVotacao = new ConsultarSessaoCasoDeUso(sessaoRepositorio,pautaService);
-        Mockito.when(pautaService.buscarPauta(pauta)).thenReturn(new PautaDto(pauta));
+        Mockito.when(pautaService.buscarPauta(pauta)).thenReturn(new PautaDto(pauta,true,""));
         boolean erro=false;
         try {
             Sessao sessao = consultarSessaoVotacao.buscarSessao(pauta);

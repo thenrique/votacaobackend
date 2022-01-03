@@ -20,3 +20,6 @@ spring:
 topic:
   name: votonotificar
 
+sessao:
+  endereco:
+    endpoint: "http://abrirsessao:8084/v1/api/sessaoPauta/get/"

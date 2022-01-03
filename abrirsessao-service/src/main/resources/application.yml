@@ -15,4 +15,6 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
-
+pauta:
+  endereco:
+    endpoint: "http://pauta:8082/v1/api/pauta/get/"
