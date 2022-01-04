@@ -5,6 +5,7 @@ import br.com.desafio.votacaoservice.dominio.*;
 import br.com.desafio.votacaoservice.dominio.CadastrarVoto;
 import br.com.desafio.votacaoservice.dominio.dto.PautaSessaoDto;
 import br.com.desafio.votacaoservice.dominio.validacao.AssociadoJaComputouVoto;
+import br.com.desafio.votacaoservice.dominio.validacao.CPFInvalido;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -26,9 +27,9 @@ public class VotarCasoDeUso implements CadastrarVoto {
 
     @Override
     public void execute(String identificadorPauta, String associado, boolean voto) throws RuntimeException {
-        /*if(!validacaoCPF.isPermitidoVotar(associado)) {
+       if(!validacaoCPF.isPermitidoVotar(associado)) {
             throw new CPFInvalido(associado);
-        }*/
+        }
         PautaSessaoDto sessaoPauta = consultarSessaoPautas.consultar(identificadorPauta);
 
         if(isSessaoPautaExiste(sessaoPauta)){
