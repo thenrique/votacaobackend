@@ -5,18 +5,26 @@ Projeto VotaçãoBackend
 ![VotacaoBackend](/imgs/Projeto_Design.png "Projeto e Design VotacaoBackend")
 
 
+Arquitetura Hexagonal
+
 Dependências:
 
 1. Docker e Docker Compose
 2. Kafka
 3. Postgres
-4. Spring Boot 2.6.1
+4. Spring Boot
 5. CircutBreak
 6. Makefile
+7. Documentação Swagger
 
 
 
 Como iniciar a aplicação.
+
+Com o docker e docker compose instalados
+
+1. docker-compose up -d
+
 
 Com o makefile instalado executar os seguintes passos.
 
@@ -24,11 +32,9 @@ Com o makefile instalado executar os seguintes passos.
 2. make run -- iniciará os containers
 3. make down  -- desligará os containers
 
-ou
 
-Com o docker e docker compose instalados
 
-1. docker-compose up -d
+
 
 Documentação da api:
 
@@ -43,9 +49,10 @@ ExibeResultado-Service: http://localhost:8087/swagger-ui/
 
 Pendências e Melhorias
 
-1. Documentação - Swagger (Bug na versão Spring 2.6.1 e Swagger 3.0.0)
-2. Melhorias no tratamento de exceções
-3. Adicionar testes de integração
-4. Adicionar um gateway e um discobery
-5. Integração com Elasticsearch
-6. Configurar ferramentas de monitoramento (Prometheus)
+1. Melhorias no tratamento de exceções
+2. Adicionar testes de integração
+3. Adicionar um gateway e um discobery
+4. Integração com Elasticsearch
+5. Configurar ferramentas de monitoramento (Prometheus)
+6. Cache para consultar das pautas
+7. Criar um serviço para validação do voto(Se ja computado, se o CPF do associado é valido e etc) dentro de um serviço para ser consumido por uma fila.
