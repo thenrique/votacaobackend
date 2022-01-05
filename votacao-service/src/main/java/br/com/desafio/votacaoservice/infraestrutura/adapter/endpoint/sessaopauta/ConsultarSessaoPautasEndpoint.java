@@ -21,7 +21,7 @@ public class ConsultarSessaoPautasEndpoint implements ConsultarSessaoPautas {
     @Override
     public PautaSessaoDto consultar(String identificadorPauta) {
         PautaSessaoDto pautaSessaoDto = restTemplate.getForObject(enderecoapisessao+identificadorPauta,PautaSessaoDto.class);
-        if(pautaSessaoDto.sucesso()){
+        if(pautaSessaoDto.message()==null){
             return pautaSessaoDto;
         }
         throw new ErroIntegracaoPautaService(pautaSessaoDto.message());

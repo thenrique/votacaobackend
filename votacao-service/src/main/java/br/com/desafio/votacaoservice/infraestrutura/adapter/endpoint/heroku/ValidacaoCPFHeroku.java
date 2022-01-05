@@ -1,6 +1,7 @@
 package br.com.desafio.votacaoservice.infraestrutura.adapter.endpoint.heroku;
 
 import br.com.desafio.votacaoservice.dominio.ValidacaoCpf;
+import br.com.desafio.votacaoservice.infraestrutura.adapter.endpoint.heroku.erro.ServicoIndisponivel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
@@ -22,11 +23,15 @@ public class ValidacaoCPFHeroku implements ValidacaoCpf {
     }
 
     @Override
-    public boolean isPermitidoVotar(String cpf) {
-        CircuitBreaker circuitbreak = circuitBreakerFactory.create("validacaoCPFCircuitBreaker");
-        String retorno = circuitbreak.run(() -> restTemplate.getForObject(ENDERECO+cpf
-                , String.class));
+    public boolean isPermitidoVotar(String cpf) throws RuntimeException {
+        try {
+            CircuitBreaker circuitbreak = circuitBreakerFactory.create("validacaoCPFCircuitBreaker");
+            String retorno = circuitbreak.run(() -> restTemplate.getForObject(ENDERECO+cpf
+                    , String.class));
+            return retorno.equalsIgnoreCase("ABLE_TO_VOTE");
+        }catch(Exception e){
+            throw new ServicoIndisponivel("Heroku");
+        }
 
-        return retorno.equalsIgnoreCase("ABLE_TO_VOTE");
     }
 }
