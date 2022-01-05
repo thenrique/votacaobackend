@@ -32,6 +32,7 @@ class CadastrarVotoRestControlerTest {
     private CadastrarVoto cadastrarVoto;
 
 
+
     @Test
     void deveCadastrarVoto() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/v1/api/voto/cadastrar").contentType(MediaType.APPLICATION_JSON)
