@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@RequestMapping("v1/api/voto")
+@RequestMapping("/v1/api/voto")
 @RestController
 public class CadastrarVotoRestControler {
 
