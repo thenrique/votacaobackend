@@ -6,12 +6,13 @@ import br.com.desafio.pautaservice.dominio.casosdeuso.PautaRepositorio;
 import br.com.desafio.pautaservice.infraestrutura.postgres.entidades.PautaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 
-@Repository
+@Component()
 public class PautaRepositorioPostgres implements PautaRepositorio {
 
     private final PautaRepositorioI pautaRepository;

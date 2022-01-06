@@ -5,6 +5,7 @@ import br.com.desafio.pautaservice.aplicacao.dto.ResponsePautaDto;
 import br.com.desafio.pautaservice.dominio.casosdeuso.CadastrarPauta;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@RequestMapping("v1/api/pauta")
+@RequestMapping("/v1/api/pauta")
 @RestController
 public class CadastrarPautaRestControler {
 

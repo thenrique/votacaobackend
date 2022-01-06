@@ -9,8 +9,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-@Component
-@Profile("test")
+
 public class RepositoriodePautaMemoria implements PautaRepositorio {
 
     private Set<Pauta> pautas = new HashSet<>();

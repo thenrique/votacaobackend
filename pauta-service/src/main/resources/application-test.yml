@@ -1,0 +1,20 @@
+
+server:
+  port: 8082
+spring:
+  application:
+    name: pauta-service
+  datasource:
+    password: votacao
+    url: jdbc:h2:mem:pauta
+    username: votacao
+    driverClass: org.h2.Driver
+    initialization-mode : never
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    show-sql: true
