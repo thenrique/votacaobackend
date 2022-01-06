@@ -5,7 +5,7 @@ spring:
     name: votacao-service
   datasource:
     password: votacao
-    url: jdbc:postgresql://postgres:5432/votacao
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/votacao
     username: votacao
   jpa:
     hibernate:
@@ -16,7 +16,7 @@ spring:
         format_sql: true
     show-sql: true
   kafka:
-    bootstrap-servers: broker:29092
+    bootstrap-servers: ${BROKER_HOST:localhost:9092}
 topic:
   name: votonotificar
 

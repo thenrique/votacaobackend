@@ -6,7 +6,7 @@ spring:
       name : exiberesultadoservice
   datasource:
     password: votacao
-    url: jdbc:postgresql://postgres:5432/exiberesultado
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/exiberesultado
     username: votacao
   jpa:
     hibernate:
@@ -17,7 +17,7 @@ spring:
         format_sql: true
     show-sql: true
   kafka:
-    bootstrap-servers: broker:29092
+    bootstrap-servers: ${BROKER_HOST:localhost:9092}
     consumer:
       enable-auto-commit: false
       auto-offset-reset: earliest

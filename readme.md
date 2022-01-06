@@ -22,8 +22,8 @@ Dependências:
 Como iniciar a aplicação.
 
 Com o docker e docker compose instalados
-
-1. docker-compose up -d
+1. mvn clean package spring-boot:build-image
+2. docker-compose up -d
 
 
 Com o makefile instalado executar os seguintes passos.

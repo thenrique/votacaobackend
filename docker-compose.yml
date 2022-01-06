@@ -9,6 +9,8 @@ services:
     depends_on:
       - postgres
     command: java - jar *.jar
+    environment:
+      DB_HOST: postgres
     networks:
       - postgres
       - default
@@ -23,6 +25,9 @@ services:
         - postgres
         - kafka
       command: java - jar *.jar
+      environment:
+        DB_HOST: postgres
+        BROKER_HOST: broker:29092
       networks:
         - postgres
         - default
@@ -39,6 +44,9 @@ services:
         - postgres
         - kafka
       command: java - jar *.jar
+      environment:
+        DB_HOST: postgres
+        BROKER_HOST: broker:29092
       networks:
         - postgres
         - default
@@ -52,6 +60,8 @@ services:
       depends_on:
         - postgres
       command: java - jar *.jar
+      environment:
+        DB_HOST: postgres
       networks:
         - postgres
         - default
@@ -67,6 +77,9 @@ services:
         - postgres
         - kafka
       command: java - jar *.jar
+      environment:
+        DB_HOST: postgres
+        BROKER_HOST: broker:29092
       networks:
         - postgres
         - default
